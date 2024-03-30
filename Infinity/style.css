@@ -182,6 +182,7 @@ z-index: 1;
 transform: scale(0.8);
 filter: blur(5px);
 transition: 0.5s;
+border-radius: 7px;
 }
 .column img:hover{
  transform: scale(1);
@@ -207,6 +208,7 @@ z-index: -1;
   font-weight: 500;
   cursor: pointer;
   padding: 4px 5px;
+  border: none;
 }
 .action{
   transform: scale(1);
@@ -344,11 +346,9 @@ cursor: pointer;
 
 
 .footer__container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;   
-    border-top: 1px solid #bcb8b8; 
-  }
+  display: flex;
+  flex-direction: column;
+}
   
   .footer__heading {
     color: var(--text-light);
@@ -359,13 +359,7 @@ cursor: pointer;
     margin-top: 20px; 
         
     }
-  .offer_container{
-    text-align: center;
-    width: 100%;
-    height: auto;
-
-    padding: 20px;
-  }
+  
   .footer__heading::after {
     content: "";
     position: absolute;
@@ -394,41 +388,21 @@ cursor: pointer;
     margin-right: 0.5rem;
   }
   
-  .instagram__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-  }
-  .instagram__grid img {
-    max-width:30%; 
-    height: auto;
-    display: block; 
-    width: 100%; 
-    border-radius: 8px; 
-}
+ 
+
   
-  .footer__bar {
-    padding: 2rem 1rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 2rem;
-  }
+ 
   
-  .copyright {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #333232;
-    background-color:rgba(128, 128, 128, 0.465);
-    width: 100%;
-    height: 20vh;
-  }
+ 
   footer.section__container.footer__container {
-    background-color:rgba(128, 128, 128, 0.465);
+    background-color:rgba(0, 0, 0, 0.253);
+   
+    
+    padding: 50px  50px;
 }
-lord-icon{
-  cursor: pointer;
-  
+.section__container
+{
+ padding: 50px 0px; 
 }
  /* Slider animation*/
  .slideshow-container {
@@ -447,26 +421,94 @@ lord-icon{
   height: 100vh;
 }
 .offer_container .offersection .offer{
-  width: 400px;
-  height: 200px;
+ 
 
   display: grid;
   place-items: center;
-  
+  border-radius: 7px;
 
 }
+
 .offer_container .offer_title{
   border-bottom: 6px solid #ffadad;
   
 }
 
+.offer{
+  position: relative;
+  width: 40%;
+
+}
+.offer-image{
+
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.offerbody{
+  width: 100%;
+  height: 60%;
+  border-radius: 10px;
+  
+  bottom:-1%;
+  opacity: 0;
+  position: absolute;
+  background-color: rgba(26, 19, 19, 0.4);
+  backdrop-filter: blur(3px);
+  color: white;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items:start;
+  cursor: pointer;
+  
+}
+.offerbody:hover{
+  transition: 0.5s;
+  height: 100%;
+  bottom:0%;
+  opacity: 1;
+}
+.offerbody h1{
+  text-transform: uppercase;
+  font-size: 40px;
+
+}
+.offerbody p{
+  margin-top: 10px;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 300;
+  color: wheat;
+}
+.offerbody button{
+  margin-top:10px;
+  color: white;
+  background-color: #ffadad;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  width: 150px;
+  cursor: pointer;
+  text-transform: capitalize;
+  padding: 10px 20px;
+
+
+}
+
 
 
 .offersection{
-
+  margin-top: 20px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
 }
+
 .active {
   background-color: #717171;
 }
@@ -476,10 +518,16 @@ lord-icon{
   animation-name: fade;
   animation-duration: 1.5s;
 }
-#carouselExampleIndicators{
-
-width: 500PX;
+.footerbody{
+ 
+ display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;   
+    border-top: 1px solid #bcb8b8; 
+    
+  
 }
+
 @keyframes fade {
   from {opacity: .4} 
   to {opacity: 1}
