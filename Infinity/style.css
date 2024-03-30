@@ -145,6 +145,7 @@ p {
     display: flex;
     align-items: center;
     padding: 10px;
+    height: 75px;
     
  
 }
@@ -289,7 +290,7 @@ cursor: pointer;
   }
   
 
-  .offercontainer{
+  .assetscontainer{
     height: auto;
     padding: 20px 0px;
 
@@ -298,10 +299,7 @@ cursor: pointer;
     justify-content: center;
     flex-direction: column;
   }
-  .header {
-    text-align: center;
-    padding: 32px;
-  }
+
   
   .assets {
     display: -ms-flexbox; /* IE10 */
@@ -348,8 +346,7 @@ cursor: pointer;
 .footer__container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-top: 115px;
+    gap: 2rem;   
     border-top: 1px solid #bcb8b8; 
   }
   
@@ -362,7 +359,13 @@ cursor: pointer;
     margin-top: 20px; 
         
     }
-  
+  .offer_container{
+    text-align: center;
+    width: 100%;
+    height: auto;
+
+    padding: 20px;
+  }
   .footer__heading::after {
     content: "";
     position: absolute;
@@ -416,6 +419,9 @@ cursor: pointer;
     font-size: 0.9rem;
     font-weight: bold;
     color: #333232;
+    background-color:rgba(128, 128, 128, 0.465);
+    width: 100%;
+    height: 20vh;
   }
   footer.section__container.footer__container {
     background-color:rgba(128, 128, 128, 0.465);
@@ -432,10 +438,35 @@ lord-icon{
   margin: auto;
 }
 
-/* Caption text */
+.offer_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width:100%;
+  height: 100vh;
+}
+.offer_container .offersection .offer{
+  width: 400px;
+  height: 200px;
+
+  display: grid;
+  place-items: center;
+  
+
+}
+.offer_container .offer_title{
+  border-bottom: 6px solid #ffadad;
+  
+}
 
 
 
+.offersection{
+
+  display: flex;
+  gap: 20px;
+}
 .active {
   background-color: #717171;
 }
@@ -445,7 +476,10 @@ lord-icon{
   animation-name: fade;
   animation-duration: 1.5s;
 }
+#carouselExampleIndicators{
 
+width: 500PX;
+}
 @keyframes fade {
   from {opacity: .4} 
   to {opacity: 1}
