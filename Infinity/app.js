@@ -1,4 +1,7 @@
 let slideIndex = 0;
+let menBtn=document.getElementById("menbutton");
+let womenBtn=document.getElementById("womenbutton");
+let unisexBtn=document.getElementById("unisexbutton");
 showSlides();
 
 function showSlides() {

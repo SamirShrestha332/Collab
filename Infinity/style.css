@@ -178,8 +178,16 @@ background-color: gray;
 .column img{
 height: 550px;
 z-index: 1;
-
+transform: scale(0.8);
+filter: blur(5px);
+transition: 0.5s;
 }
+.column img:hover{
+ transform: scale(1);
+  filter: blur(0px);
+  transition: 0.5s;
+  cursor: pointer;
+  }
 .column{
 display: flex;
 align-items: center;
@@ -191,13 +199,20 @@ z-index: -1;
 .column button{
   position: relative;
   right: 50%;
-top: 90%;
   width: 250px;
   height: 40px;
   z-index: 1;
-
+  letter-spacing: 2px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 5px;
 }
-
+.action{
+  transform: scale(1);
+  filter: blur(0px);
+  transition: 0.5s;
+  cursor: pointer;
+}
 
 .column {
   float: left;
@@ -261,26 +276,8 @@ cursor: pointer;
     height: 24px;
 }
 
-.offer_grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-  
-  .offer_card {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .offer_content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    color: var(--white);
-    text-align: center;
-  }
+
+ 
   
   .title {
     font-size: 2rem;
@@ -291,64 +288,61 @@ cursor: pointer;
     font-size: 2.5rem;
   }
   
-  .subtitle {
-    font-size: 1rem;
-  }
-  
-  .offer_btn {
-    margin-top: 2rem;
-    color: #000000;
-    background-color: #e4cde4;
-  }
-  
-  .offer_card::before {
-    position: absolute;
-    content: " offer!!";
-    height: 100%;
-    width: 100%;
-    top: -100%;
-    left: 0;
-    background-color: rgba(216, 163, 216, 0.5);
-    transition: 0.5s;
-  }
-  .offer_content .subtitle {
-    color: black;
-  }
-  
-  .offer_card:hover::before {
-    top: 0;
-  }
-  
-  .offer_card:hover .offer_btn {
-    color: rgb(11, 11, 11); 
-    background-color: #cd83da;
-  }
-  .offer {
-    background: radial-gradient(#ffffff, #eab8e7);
-    margin-top: 450px;
-    border-top: 1px solid #959191; 
-    border-bottom: 1px solid #8e8a8a; 
 
+  .offercontainer{
+    height: auto;
+    padding: 20px 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
-  .titleoffer{
+  .header {
     text-align: center;
-     margin: 0 auto 80px;
-      position: relative;
-       line-height: 60px;
-        color: #302d2d;
+    padding: 32px;
   }
-  .titleoffer::after{
-    content:'';
-    background:#f524ee;
-    width: 80px;
-    height: 5px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 0;
-    left:50%;
-    transform: translate(-50%);
-}
-
+  
+  .assets {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  
+  /* Create four equal columns that sits next to each other */
+  .items {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+  }
+  
+  .items img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    border-radius: 20px;
+  }
+  
+  /* Responsive layout - makes a two column-layout instead of four columns */
+  @media screen and (max-width: 800px) {
+    .items {
+      -ms-flex: 50%;
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .items {
+      -ms-flex: 100%;
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
 
 
 .footer__container {
