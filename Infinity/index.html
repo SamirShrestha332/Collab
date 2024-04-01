@@ -1,4 +1,50 @@
+<!-- <?php
+// Database connection parameters
+$servername = "localhost"; // Replace with your server name or IP address
+$username = "root"; // Replace with your MySQL username
+$password = ""; // Replace with your MySQL password
+$dbname = "infinity"; // Replace with your database name
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+//echo "Connected successfully";
+
+
+
+
+// SQL query to retrieve data (limit to 6 rows)
+$sql = "SELECT * FROM nav LIMIT 6"; // Replace 'your_table' with your actual table name
+
+// Execute the query
+$result = $conn->query($sql);
+
+// Initialize an empty string to store the list items
+$listItems = "";
+
+// Check if there are any rows returned
+if ($result->num_rows > 0) {
+    // Output data of each row
+    while($row = $result->fetch_assoc()) {
+        // Add each row's data to the list items string
+        $listItems .= "<li><a href=''>" . $row["box_name"] . "</a></li>";
+    }
+} else {
+    // If less than 6 rows are retrieved, add empty list items to make it 6
+    for ($i = 0; $i < 6; $i++) {
+        $listItems .= "<li><a href=''>Empty Item</a></li>";
+    }
+}
+
+
+// Close the database connection
+$conn->close();
+?>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +60,12 @@
     <div class="header">
         <div class="container">
             <div class="navbar">
+             
+              <div class="burger">
+                <ion-icon name="menu-outline" class="burgericon"></ion-icon>
+               
+              </div>
+             
                 <div class="logo">
                     <img src="images/infinity_logo.png" width="90px">
                 </div>
@@ -36,6 +88,7 @@
                         <li><a href="#women">Women</a></li>
                         <li><a href="#unisex">Unisex</a></li>
                         <li><a href="#Sale">Sale</a></li>
+                        <!-- <?php echo $listItems; ?> -->
                        
                     </ul>
                 </nav>
@@ -61,6 +114,9 @@
                 </div>
                
             </div>
+            <div class="closenavdiv">
+            <ion-icon name="close-outline"></ion-icon>
+          </div>
             <div class="row">
                 <div class="col-2">
                     <h1>Your Fashion Adventure Begins Here.<br> Welcome!</h1>
@@ -68,21 +124,20 @@
                         <br> designed to help you express your unique personality through fashion.</p>
                     <a href="" class="btn">Explore Now &#8594;</a>
                 </div>
-              
               <!--Slider of images-->
                 <div class="slideshow-container">
                   <div class="mySlides fade">
-                    <img src="images/unisexphoto.png" style="width:400px">
+                    <img src="images/unisexphoto.png"  class="sliderimg">
                   </div>
 
                   <div class="mySlides fade">
-                    <img src="images/menphotto.png" style="width:400px">
+                    <img src="images/menphotto.png" class="sliderimg">
                   
                   </div>
 
                   <div class="mySlides fade">
                   
-                    <img src="images/womenphoto.png" style="width:400px">
+                    <img src="images/womenphoto.png"  class="sliderimg">
                   
                   </div>
 
@@ -137,28 +192,28 @@
       <div class="assets"> 
         <div class="items">
 
-          <img src="/assets/rectangle1.jpg" style="width:100%">
+          <img src="assets/rectangle1.jpg" loading="lazy" style="width:100%">
 
-          <img src="/assets/straight_rectangle7.jpg" style=" width:100%">
+          <img src="assets/straight_rectangle7.jpg"  loading="lazy"     style=" width:100%">
 
           
         </div>
         <div class="items">
-          <img src="/assets/straight_rectangle1.jpg" style="width:100%">
-          <img src="/assets/rectangle2.jpg" style="width:100%">
-          <img src="/assets/straight_rectangle2.jpg" style="width:100%">
+          <img src="assets/straight_rectangle1.jpg"  loading="lazy" style="width:100%">
+          <img src="assets/rectangle2.jpg" loading="lazy" style="width:100%">
+          <img src="assets/straight_rectangle2.jpg"  loading="lazy"  style="width:100%">
          
         </div>  
         <div class="items">
-          <img src="/assets/straight_rectangle3.jpg" style="width:100%">
-          <img src="/assets/straight_rectangle4.jpg" style="width:100%">
-          <img src="/assets/rectangle3.jpg" style="width:100%">
+          <img src="assets/straight_rectangle3.jpg" loading="lazy"  style="width:100%">
+          <img src="assets/straight_rectangle4.jpg" loading="lazy"   style="width:100%">
+          <img src="assets/rectangle3.jpg" style="width:100%">
          
         </div>
         <div class="items">
-          <img src="/assets/rectangle4.jpg" style="width:100%">
-          <img src="/assets/straight_rectangle5.jpg" style="width:100%">
-          <img src="/assets/straight_rectangle6.jpg" style="width:100%">
+          <img src="assets/rectangle4.jpg" style="width:100%">
+          <img src="assets/straight_rectangle5.jpg" style="width:100%">
+          <img src="assets/straight_rectangle6.jpg" style="width:100%">
         
         </div>
       </div>
@@ -177,7 +232,7 @@
     <div class="offersection">
 
       <div class="offer">
-       <img src="/offer/offerimage1.jpg" class="offer-img" alt="offerimage" width="100%">
+       <img src="offer/offerimage1.jpg" class="offer-img" alt="offerimage" width="100%">
        <div class="offerbody">
         <h2>Grab the Huge discount!!!</h2>
         <p> Discount up to 20% on  all products in our store .</p>
@@ -187,7 +242,7 @@
       </div>
       
       <div class="offer">
-      <img src="/offer/offerimage2.jpg" alt="offerimage" width="100%">
+      <img src="offer/offerimage2.jpg" alt="offerimage" width="100%">
       <div class="offerbody">
         <h2>Grab the Huge discount!!!</h2>
         <p> Discount up to 30%  for the New Customer.</p>
@@ -196,7 +251,7 @@
       </div>
 
       <div class="offer">
-        <img src="/offer/offerimage3.jpg" alt="offerimage" width="100%">
+        <img src="offer/offerimage3.jpg" alt="offerimage" width="100%">
         <div class="offerbody">
           <h2>Grab Buy One Get One Free!!!</h2>
           <p> Discount up to 30%  for the New Customer.</p>
