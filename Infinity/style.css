@@ -31,12 +31,16 @@ img {
    top: 0px;
     width: 100%;
     height: 75px;
+    background-color: white;
+
     border-bottom: 2px solid #e552e5;
  
 
     
 
 }
+
+
 .icons{
 
   display: flex;
@@ -221,9 +225,10 @@ z-index: -1;
 }
 
 .column {
-  float: left;
+  float:left;
   width: 33.33%;
   padding: 5px;
+
 }
 
 
@@ -341,9 +346,9 @@ cursor: pointer;
   /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
     .items {
-      -ms-flex: 100%;
+      -ms-flex: 50%;
       flex: 100%;
-      max-width: 100%;
+      max-width: 50%;
     }
   }
 
@@ -520,6 +525,29 @@ body{
 
 }
 
+.offer_container .offersection .offer {
+  display: flex;
+  place-items: center;
+  border-radius: 7px;
+
+  width: 30vw;
+  min-width: 400px; /* Added a minimum width to each offer */
+  margin-right: 10px; /* Added margin between offers */
+}
+
+.offersection {
+  overflow-x: hidden; /* Changed to hidden to prevent scrolling by default */
+  white-space: nowrap; /* Prevents items from wrapping to the next line */
+  padding: 10px;
+   /* Added padding to improve spacing */
+}
+
+
+
+
+
+
+
 
 
 .offersection{
@@ -527,6 +555,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 20px;
 }
 
@@ -572,16 +601,59 @@ body{
 
 }
 .closenavdiv{
-  width: 100%;
-  left: 0;
+  width: 0%;
+
+  left: -10%;
   height: 100vh;
   position: absolute;
   background-color:#0000007f;
   top: 0;
-  text-align: right;
+  text-align: center;
   font-size: 50px;
+
+  display: block;
+  transition: 0.5s;
+}
+.crossbtn-active{
+  width: 0%;
+  left: -20%;
+}
+.opennav{
+  width: 100%;
+  left: 0;
+}
+.closenavdiv button{
+border: none;
+background:transparent;
+cursor: pointer;
+
+}
+button .crossbtn{
+font-size: 40px;
+
+color: black;
+}
+.menu{
+  display: flex;
+  font-size:12px;
+   width: 100%;
+   position: relative;
+   justify-content: start;
+   color: white;
+  
+}
+.menu ul{
+  display: flex;
+  flex-direction: column;
   color: white;
-  display: none;
+}
+.menu ul li{
+  color:white;
+  font-size: 2em;
+  margin-top:2em;
+}
+.menu ul li a{
+  color:#000;
 }
 
 @media  only screen and (max-width:1200px) {
@@ -628,7 +700,34 @@ gap: 1%;
 @media  only screen and (max-width:980px) {
  nav{
   display: none;
+
+  z-index: 999;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 1200%;
+  height: 100vh;
+  position: absolute;
+  top: 0%;
  }
+ .navlinks{
+flex-direction: column;
+
+position: absolute;
+font-size: 2rem;
+line-height: 120%;
+
+
+transform: translate(-50%,-50%);
+
+
+ }
+ .closenavdiv{
+  backdrop-filter: blur(20px);
+}
+ 
   
   .logo{
   position: absolute;
@@ -661,6 +760,11 @@ gap: 1%;
   }
   .burger{
     display: block;
+  }
+  .burger button{
+    border: none;
+    background: transparent;
+    cursor: pointer;
   }
   .search-bar {
     width: 430px;
@@ -707,6 +811,77 @@ gap: 1%;
  position: relative;
  left: -20%;
 
+
+}
+.footer__container .footer__heading{
+  font-size: 0.7em;
+}
+.footer__container .footerbody p{
+  font-size: 0.7em;
+}
+
+.offer_container .offersection .offer {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  width:200px;
+ /* Added a minimum width to each offer */
+  margin-right: 10px; /* Added margin between offers */
+}
+
+.offersection {
+
+  overflow-x: auto;
+  white-space: nowrap;
+width: 100%;
+height: 50vh;
+scroll-behavior: smooth;
+}
+
+
+.offerbody h1{
+  text-transform: uppercase;
+  font-size: 40px;
+
+}
+.offerbody p{
+  margin-top: 10px;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 300;
+  color: wheat;
+}
+.offerbody button{
+  margin-top:10px;
+  color: white;
+  background-color: #ffadad;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  width: 100px;
+  height: 50px;
+  font-size: 10px;
+  cursor: pointer;
+  text-transform: capitalize;
+  padding: 2px 3px;
+
+
+
+}
+
+.offer{
+  position: relative;
+  width: 40%;
+
+}
+.offer-image{
+
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 .search-bar input{
   font-size: 12px;

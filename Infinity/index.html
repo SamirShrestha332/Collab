@@ -62,7 +62,7 @@ $conn->close();
             <div class="navbar">
              
               <div class="burger">
-                <ion-icon name="menu-outline" class="burgericon"></ion-icon>
+                <button onclick="openNav()"><ion-icon name="menu-outline" class="burgericon"  ></ion-icon></button>
                
               </div>
              
@@ -82,7 +82,7 @@ $conn->close();
                   
                 </div>
                 <nav>
-                    <ul>
+                    <ul class="navlinks">
                         <li><a href="#newin">New in</a></li>
                         <li><a href="#men">Men</a></li>
                         <li><a href="#women">Women</a></li>
@@ -115,7 +115,18 @@ $conn->close();
                
             </div>
             <div class="closenavdiv">
-            <ion-icon name="close-outline"></ion-icon>
+            <button onclick="closeNav()"><ion-icon name="close-outline" class="crossbtn" ></ion-icon></button>
+            <nav class="menu">
+              <ul class="navlinks1">
+                  <li><a href="#newin">New in</a></li>
+                  <li><a href="#men">Men</a></li>
+                  <li><a href="#women">Women</a></li>
+                  <li><a href="#unisex">Unisex</a></li>
+                  <li><a href="#Sale">Sale</a></li>
+                  <!-- <?php echo $listItems; ?> -->
+                 
+              </ul>
+          </nav>
           </div>
             <div class="row">
                 <div class="col-2">

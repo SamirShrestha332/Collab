@@ -21,19 +21,23 @@ function showSlides() {
   setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
 function openNav() {
-  document.getElementById("myNav").style.width = "100%";
+  document.querySelector(".closenavdiv").classList.add("opennav");
+  document.querySelector(".closenavdiv").classList.remove("clocsebtn-active");
 }
 
 function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
+  document.querySelector(".closenavdiv").classList.add("crossbtn-active");
+  document.querySelector(".closenavdiv").classList.remove("opennav");
 }
 
 
 const navSlide= () => {
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('ul');
+  const crossicon = document.querySelector('.');
   let navlinks = document.querySelectorAll('ul li')
  
+  .
   burger.addEventListener('click',() => {
      //toggle nav
      nav.classList.toggle('nav-active');
