@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 // Database connection parameters
 $servername = "localhost"; // Replace with your server name or IP address
 $username = "root"; // Replace with your MySQL username
@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
 
 // Close the database connection
 $conn->close();
-?>
+?>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +60,12 @@ $conn->close();
     <div class="header">
         <div class="container">
             <div class="navbar">
-            
+             
+              <div class="burger">
+                <button onclick="openNav()"><ion-icon name="menu-outline" class="burgericon"  ></ion-icon></button>
+               
+              </div>
+             
                 <div class="logo">
                     <img src="images/infinity_logo.png" width="90px">
                 </div>
@@ -77,13 +82,13 @@ $conn->close();
                   
                 </div>
                 <nav>
-                    <ul>
-                        <!-- <li><a href="#newin">New in</a></li>
-                        <li><a href="#men">Men</a></li>
+                    <ul class="navlinks">
+                        <li><a href="#newin">Newin</a></li>
+                        <li><a href="#men" class="menindicator">Men</a></li>
                         <li><a href="#women">Women</a></li>
                         <li><a href="#unisex">Unisex</a></li>
-                        <li><a href="#Sale">Sale</a></li> -->
-                        <?php echo $listItems; ?>
+                        <li><a href="#Sale">Sale</a></li>
+                        <!-- <?php echo $listItems; ?> -->
                        
                     </ul>
                 </nav>
@@ -109,6 +114,20 @@ $conn->close();
                 </div>
                
             </div>
+            <div class="closenavdiv">
+            <button onclick="closeNav()"><ion-icon name="close-outline" class="crossbtn" ></ion-icon></button>
+            <nav class="menu">
+              <ul class="navlinks1">
+                  <li><a href="#newin">New in</a></li>
+                  <li><a href="#"  class="menindicator">Men</a></li>
+                  <li><a href="#women">Women</a></li>
+                  <li><a href="#unisex">Unisex</a></li>
+                  <li><a href="#Sale">Sale</a></li>
+                  <!-- <?php echo $listItems; ?> -->
+                 
+              </ul>
+          </nav>
+          </div>
             <div class="row">
                 <div class="col-2">
                     <h1>Your Fashion Adventure Begins Here.<br> Welcome!</h1>
@@ -116,21 +135,20 @@ $conn->close();
                         <br> designed to help you express your unique personality through fashion.</p>
                     <a href="" class="btn">Explore Now &#8594;</a>
                 </div>
-              
               <!--Slider of images-->
                 <div class="slideshow-container">
                   <div class="mySlides fade">
-                    <img src="images/unisexphoto.png" style="width:400px">
+                    <img src="images/unisexphoto.png"  class="sliderimg">
                   </div>
 
                   <div class="mySlides fade">
-                    <img src="images/menphotto.png" style="width:400px">
+                    <img src="images/menphotto.png" class="sliderimg">
                   
                   </div>
 
                   <div class="mySlides fade">
                   
-                    <img src="images/womenphoto.png" style="width:400px">
+                    <img src="images/womenphoto.png"  class="sliderimg">
                   
                   </div>
 
