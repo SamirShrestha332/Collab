@@ -320,7 +320,10 @@ body{
 .active {
   background-color: #717171;
 }
-
+.menindicator{
+  color:rgb(184, 73, 165);;
+  }
+  
 /* Fading animation */
 .fade {
   animation-name: fade;
@@ -378,7 +381,7 @@ cursor: pointer;
 button .crossbtn{
 font-size: 40px;
 
-color: black;
+color: white;
 }
 .menu{
   display: flex;
@@ -400,7 +403,12 @@ color: black;
   margin-top:2em;
 }
 .menu ul li a{
-  color:#000;
+  color:white;
+}
+.menu ul li a:hover{
+    
+  color:wheat;
+  
 }
 
 @media  only screen and (max-width:1200px) {
