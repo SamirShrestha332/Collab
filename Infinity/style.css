@@ -631,7 +631,7 @@ cursor: pointer;
 button .crossbtn{
 font-size: 40px;
 
-color: black;
+color: white;
 }
 .menu{
   display: flex;
@@ -653,7 +653,8 @@ color: black;
   margin-top:2em;
 }
 .menu ul li a{
-  color:#000;
+  color:white;
+  letter-spacing: 2px;
 }
 
 @media  only screen and (max-width:1200px) {
