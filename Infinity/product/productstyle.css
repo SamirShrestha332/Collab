@@ -318,6 +318,8 @@ body{
   padding:12px;
   font-size: 12px;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
 
 }
 .cartitems .item {
@@ -325,6 +327,7 @@ body{
   background-color: white;
   align-items: center;
   justify-content: center;
+  margin-top: 5px;
   gap: 17px;
   padding: 5px;
   border-radius: 5px;
@@ -734,6 +737,7 @@ border-left: 2px solid rgba(0, 0, 0, 0.479);
 }
 .productsection .details .productnameandprice .productprice{
     display: flex;
+    gap: 2px;
 }
 .productsection .details .productnameandprice {
     text-align: left;

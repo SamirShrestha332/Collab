@@ -72,3 +72,18 @@ carticon.addEventListener('click', () => {
   }
 });
 
+
+function countItems() {
+  let items = document.querySelectorAll(".item");
+  let count_item=document.querySelector('.count');
+  let counter = 0; // Initialize counter outside the loop
+  for (let i = 0; i < items.length; i++) {
+    counter++; // Increment counter for each item found
+  }
+  count_item.innerHTML=counter;
+}
+
+countItems();
+
+
+
