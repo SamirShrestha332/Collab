@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce website</title>
+    <link rel="stylesheet" href="productstyle.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+             
+              <div class="burger">
+                <button onclick="openNav()"><ion-icon name="menu-outline" class="burgericon"  ></ion-icon></button>
+               
+              </div>
+             
+                <div class="logo">
+                    <img src="/Images/infinity_logo.png" width="90px">
+                </div>
+                <div class="search-bar">
+                    
+                    <input type="text" placeholder="Search...">
+                    <lord-icon
+    src="https://cdn.lordicon.com/unukghxb.json"
+    trigger="hover"
+    colors="primary:#121331,secondary:#f49cc8"
+    stroke="bold"
+    style="width:35px">
+                </lord-icon>        
+                  
+                </div>
+                <nav>
+                    <ul class="navlinks">
+                        <li><a href="#newin">Newin</a></li>
+                        <li><a href="#men" class="menindicator">Men</a></li>
+                        <li><a href="#women"class="womenindicator">Women</a></li>
+                        <li><a href="#unisex"  class="unisexindicator">Unisex</a></li>
+                        <li><a href="#Sale">Sale</a></li>
+                        <!-- <?php echo $listItems; ?> -->
+                       
+                    </ul>
+                </nav>
+
+                <div class="icons">
+                  <a href="#footer">
+                    <lord-icon
+                    src="https://cdn.lordicon.com/rsvfayfn.json"
+                    trigger="hover"
+                    style="width:40px ;">
+                </lord-icon>
+              </a>
+
+              
+                <lord-icon
+                class="carticon"
+                id="carticon"
+                src="https://cdn.lordicon.com/odavpkmb.json"
+                trigger="hover"
+                stroke="bold"
+                colors="primary:#121331,secondary:#000"
+                style="width:40px">
+            </lord-icon>
+              
+              <span class="count">0</span>
+              
+                </div>
+                
+               
+            </div>
+            <div class="cartitems">
+                <div class="item">
+                    <img src="/product/productimage/cottonshirt.jpg"  width="18.65%"alt="product image"/>
+                    <p class="productname">Cotton Shirt</p>
+                    <p class="cart_item_quantity">1</p>
+                    <button ><ion-icon name="close-outline" class="item_cross_btn" ></ion-icon></button>
+                    
+                </div>
+            </div>
+            <div class="closenavdiv">
+            <button onclick="closeNav()"><ion-icon name="close-outline" class="crossbtn" ></ion-icon></button>
+            <nav class="menu">
+              <ul class="navlinks1">
+                  <li><a href="#newin">New in</a></li>
+                  <li><a href="#men"  class="menindicator">Men</a></li>
+                  <li><a href="#women">Women</a></li>
+                  <li><a href="#unisex">Unisex</a></li>
+                  <li><a href="#Sale">Sale</a></li>
+                  <!-- <?php echo $listItems; ?> -->
+                 
+              </ul>
+          </nav>
+          </div>
+          <div class="product_container">
+            <!--reverse action for user-->
+            <div class="reversal_action">
+                <p>home/men/shirt</p>
+            </div>
+            <!--product section  which contain both image and it's filter-->
+            <div class="productsection">
+                <!--image   side -->
+                <div class="imageside">
+                    <div class="imgcontainer">
+                        <img src="./productimage/cottonshirt.jpg" alt="cotton shirt" width="41%">
+                        <img src="./productimage/cottonshirt2.png" alt="cotton shirt" width="41%">
+                    </div>
+                    <!--image description-->
+                    <div class="imgdescription">
+                        <h4>Descriprion</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, a eum aut recusandae dignissimos quisquam aliquid deleniti in blanditiis rerum magnam laborum dolorum obcaecati, molestiae pariatur fuga cumque sit. Quaerat.</p>
+                    </div>
+                </div>
+                <!--product filter section-->
+                <div class="details">
+                    <div class="productnameandprice">
+                        <h4>Cotton Shirt</h4>
+                        <!--price section-->
+                        <div class="productprice">
+                        <p>Rs </p><p class="amount">1200</p>
+                    </div>
+                    </div>
+
+                    <div class="Sizes">
+                        <h4>Sizes</h4>
+                        <!--size section of all the  option-->
+                        <div class="sizesection">
+                        <div class="size">XS</div>
+                        <div class="size">S</div>
+                        <div class="size">L</div>
+                        <div class="size">XL</div>
+                        <div class="size">XXL</div>
+                        <div class="size">M</div>
+                    </div>
+                    </div>
+
+                    <!-- quantity button -->
+                    <div class="quantitysection">
+                        <h4>Quantity</h4>
+                        <div class="quantity_btns">
+                            <button id="sub_Btn" onclick="subquantity()"><ion-icon name="remove-outline"></ion-icon></button>
+                            <span class="quantity" id="num_quantity">1</span>
+                            <button id="add_Btn" onclick="addquantity()"><ion-icon name="add-outline"></ion-icon></button>
+                        </div>
+                </div>
+                <!--total price-->
+                <div class="totalpricesection">
+                    <h4>Total Amount:</h4>
+                     <div class="totalamountsection">
+                        <span class="unit">Rs</span>
+                        <span class="totalRs">1200</span>
+                     </div>
+                </div>
+<!--add to card button-->
+
+                <div class="cartbuttonsection">
+                        <button class="cart_button">Add to Carts <ion-icon name="cart-outline"></ion-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+    </body>
+</html>
