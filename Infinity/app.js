@@ -36,7 +36,24 @@ function closeNav() {
 let men_Btn=document.querySelector('.menindicator');
 
 men_Btn.addEventListener('click',()=>{
- window.location="/Navgation/nav.html";
+ 
   men_Btn.style.color='rgb(184, 73, 165);'
 
 })
+// Function to update the count display with the latest data
+function updateCountDisplay() {
+  // Retrieve the cart from local storage
+  let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+  // Get the last item's count if the cart is not empty
+  let latestCount = cart.length > 0 ? cart[cart.length - 1].count : 0;
+
+  // Find the element with the class 'count' and update its content
+  let countElement = document.querySelector('.count');
+  if (countElement) {
+    countElement.innerText = latestCount;
+  }
+}
+
+// Call the function to update the count display
+updateCountDisplay();

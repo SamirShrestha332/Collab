@@ -310,7 +310,9 @@ body{
 }
 .cartitems{
   position: absolute;
-  right: -50%;
+
+  right:100%;
+  overflow-y:scroll;
   width:200px;
   height:200px;
   background-color: rgba(0, 0, 0, 0.27);
@@ -320,6 +322,8 @@ body{
   font-weight: bold;
   display: flex;
   flex-direction: column;
+ 
+ 
 
 }
 .cartitems .item {
@@ -332,6 +336,7 @@ body{
   padding: 5px;
   border-radius: 5px;
 }
+
 .cartitems .item img{
  border-radius: 5px;
 }
@@ -671,6 +676,10 @@ font-size: 0.6em;
  
    
 } 
+
+body{
+  overflow-x:hidden;
+}
 @media only screen and (max-width: 600px) {/* PHONE */
   .search-bar {
     width: 400px;

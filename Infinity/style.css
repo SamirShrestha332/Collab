@@ -111,6 +111,17 @@ p {
     justify-content: space-around;
       
 }
+.icons .count{
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  font-size: 13px;
+  font-weight: bolder;
+  position: relative;
+  left: -20px;
+}
 
 .col-2 {
     flex-basis: 50%;
