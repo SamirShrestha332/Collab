@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2024 at 03:53 AM
+-- Generation Time: Apr 21, 2024 at 04:27 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -29,9 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
-  `userName` varchar(200) DEFAULT NULL,
+  `Email` varchar(200) DEFAULT NULL,
   `Password` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `Email`, `Password`) VALUES
+(1, 'np03cs4a220139@heraldcollege.edu.np', 'Nizzu123'),
+(2, 'np03cs4a220138@heraldcollege.edu.np', 'Samir123'),
+(3, 'np03cs4a220129@heraldcollege.edu.np', 'Manogya343'),
+(4, 'np03cs4a220037@heraldcollege.edu.np', 'Slisha367'),
+(5, 'np03cs4a220158@heraldcollege.edu.np', 'Renuka909');
 
 -- --------------------------------------------------------
 
@@ -351,7 +362,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
