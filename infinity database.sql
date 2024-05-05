@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 04:27 AM
+-- Generation Time: May 05, 2024 at 01:44 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -60,11 +60,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `name`) VALUES
-(1, 'MEN'),
-(2, 'FEMALE'),
-(3, 'UNISEX'),
-(4, 'NEWIN'),
-(5, 'SALE');
+(1, 'Men'),
+(2, 'Women'),
+(3, 'Unisex'),
+(4, 'Sale'),
+(6, 'Men');
 
 -- --------------------------------------------------------
 
@@ -139,40 +139,22 @@ CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `detail` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `sub_category_female_id` int(11) DEFAULT NULL,
   `sub_category_male_id` int(11) DEFAULT NULL,
   `sub_category_unisex_id` int(11) DEFAULT NULL,
-  `Available_Size` varchar(255) DEFAULT NULL,
-  `Image_URL` varchar(255) DEFAULT NULL
+  `size` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `stock` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `name`, `price`, `detail`, `category_id`, `sub_category_female_id`, `sub_category_male_id`, `sub_category_unisex_id`, `Available_Size`, `Image_URL`) VALUES
-(1, 'Men Cargo Pants', NULL, NULL, 1, NULL, 1, NULL, NULL, NULL),
-(2, 'Half T-shirt', NULL, NULL, 1, NULL, 2, NULL, NULL, NULL),
-(3, 'Full T-shirt', NULL, NULL, 1, NULL, 2, NULL, NULL, NULL),
-(4, 'Jeans pant', NULL, NULL, 1, NULL, 1, NULL, NULL, NULL),
-(5, 'Half Pant', NULL, NULL, 1, NULL, 1, NULL, NULL, NULL),
-(6, 'Leather Jacket', NULL, NULL, 1, NULL, 3, NULL, NULL, NULL),
-(7, 'Denim Jacket', NULL, NULL, 1, NULL, 3, NULL, NULL, NULL),
-(8, 'Half Sweater', NULL, NULL, 1, NULL, 4, NULL, NULL, NULL),
-(9, 'Full Sweater', NULL, NULL, 1, NULL, 4, NULL, NULL, NULL),
-(10, 'Puffer Jacket', NULL, NULL, 1, NULL, 3, NULL, NULL, NULL),
-(21, 'Blue Jeans Pant', NULL, NULL, 2, 1, NULL, NULL, NULL, NULL),
-(22, 'Black Belly Pant', NULL, NULL, 2, 1, NULL, NULL, NULL, NULL),
-(23, 't-shirt', NULL, NULL, 2, 2, NULL, NULL, NULL, NULL),
-(24, 'Leather Jacket', NULL, NULL, 2, 3, NULL, NULL, NULL, NULL),
-(25, 'Crop Denim Jacket', NULL, NULL, 2, 3, NULL, NULL, NULL, NULL),
-(26, 'Purple half-sweater', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
-(27, 'Crop Sweater', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
-(28, 'Floral Crop top', NULL, NULL, 2, 2, NULL, NULL, NULL, NULL),
-(29, 'Half pant', NULL, NULL, 2, 1, NULL, NULL, NULL, NULL),
-(30, 'tank top', NULL, NULL, 2, 2, NULL, NULL, NULL, NULL);
+INSERT INTO `product` (`product_id`, `name`, `price`, `description`, `category_id`, `sub_category_female_id`, `sub_category_male_id`, `sub_category_unisex_id`, `size`, `image`, `stock`) VALUES
+(33, 'cotton tshirt', '1200.00', 'Soft, breathable, and effortlessly stylish, our cotton t-shirt is the ultimate wardrobe staple. Crafted from high-quality cotton fabric, it offers all-day comfort and versatility for any occasion.', NULL, NULL, NULL, NULL, 'M', '66376b9fc37d6_cottonshirt2.png', '12');
 
 -- --------------------------------------------------------
 
@@ -185,6 +167,13 @@ CREATE TABLE `sub_categories` (
   `name` varchar(200) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sub_categories`
+--
+
+INSERT INTO `sub_categories` (`sub_id`, `name`, `category_id`) VALUES
+(1, 'T-shirt', NULL);
 
 -- --------------------------------------------------------
 
@@ -368,7 +357,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `category_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `nav`
@@ -398,13 +387,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sub_categories_female`
