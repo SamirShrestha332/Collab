@@ -22,32 +22,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $size = $_POST['product-size'];
     $stock = floatval($_POST['product-stock']);
 
-    // Check if file is uploaded
-    if (isset($_FILES['product-image']) && $_FILES['product-image']['error'] === UPLOAD_ERR_OK) {
-        // Image upload
-        $targetDir = 'C:/xampp/htdocs/Infinity/uploads/'; // Define your target directory
-        $imageName = uniqid() . '_' . basename($_FILES['product-image']['name']);
-        $targetPath = $targetDir . $imageName;
+    // Query to select category ID based on category name
+    $categoryQuery = "SELECT category_id FROM categories WHERE name = '$category'";
+    $categoryResult = $conn->query($categoryQuery);
 
-        if (move_uploaded_file($_FILES['product-image']['tmp_name'], $targetPath)) {
-            // Image moved successfully
-            // Now insert the image filename into the product table
-            $product_image_name = $imageName; // Use the generated unique image name
+    if ($categoryResult && $categoryResult->num_rows > 0) {
+        $row = $categoryResult->fetch_assoc();
+        $categoryId = $row['category_id'];
 
-            // Insert product data
-            $productSql = "INSERT INTO product (name, price, description, image, size, stock) 
-                           VALUES ('$productName', $price, '$description', '$product_image_name', '$size', '$stock')";
+        // Check if file is uploaded
+        if (isset($_FILES['product-image']) && $_FILES['product-image']['error'] === UPLOAD_ERR_OK) {
+            // Image upload
+            $targetDir = 'C:/xampp/htdocs/Infinity/uploads/'; // Define your target directory
+            $imageName = uniqid() . '_' . basename($_FILES['product-image']['name']);
+            $targetPath = $targetDir . $imageName;
 
-            if ($conn->query($productSql) === TRUE) {
-                echo "Product added successfully!";
+            if (move_uploaded_file($_FILES['product-image']['tmp_name'], $targetPath)) {
+                // Image moved successfully
+                // Now insert the image filename into the product table
+                $product_image_name = $imageName; // Use the generated unique image name
+
+                // Insert product data
+                $productSql = "INSERT INTO product (name, price, description, category_id, image, size, stock) 
+                               VALUES ('$productName', $price, '$description', $categoryId, '$product_image_name', '$size', $stock)";
+
+                if ($conn->query($productSql) === TRUE) {
+                    echo "Product added successfully!";
+                } else {
+                    echo "Error: " . $conn->error;
+                }
             } else {
-                echo "Error: " . $conn->error;
+                echo "Error uploading image.";
             }
         } else {
-            echo "Error uploading image.";
+            echo "Error: No image uploaded.";
         }
     } else {
-        echo "Error: No image uploaded.";
+        echo "Error: Category not found.";
     }
 }
 
