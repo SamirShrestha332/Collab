@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2024 at 01:44 PM
+-- Generation Time: May 06, 2024 at 12:59 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -63,8 +63,7 @@ INSERT INTO `categories` (`category_id`, `name`) VALUES
 (1, 'Men'),
 (2, 'Women'),
 (3, 'Unisex'),
-(4, 'Sale'),
-(6, 'Men');
+(4, 'Sale');
 
 -- --------------------------------------------------------
 
@@ -85,9 +84,8 @@ INSERT INTO `nav` (`id`, `box_name`) VALUES
 (1, 'Home '),
 (2, 'Men'),
 (3, 'Women'),
-(4, 'Blog'),
-(5, 'About us'),
-(6, 'Contact ');
+(4, 'Unisex'),
+(5, 'Sales');
 
 -- --------------------------------------------------------
 
@@ -141,79 +139,34 @@ CREATE TABLE `product` (
   `price` decimal(10,2) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `sub_category_female_id` int(11) DEFAULT NULL,
-  `sub_category_male_id` int(11) DEFAULT NULL,
+  `sub_category_men_id` int(11) DEFAULT NULL,
+  `sub_category_women_id` int(11) DEFAULT NULL,
   `sub_category_unisex_id` int(11) DEFAULT NULL,
-  `size` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `stock` varchar(255) DEFAULT NULL
+  `size_S` int(11) DEFAULT NULL,
+  `size_M` int(11) DEFAULT NULL,
+  `size_XL` int(11) DEFAULT NULL,
+  `size_XXL` int(11) DEFAULT NULL,
+  `stock` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`product_id`, `name`, `price`, `description`, `category_id`, `sub_category_female_id`, `sub_category_male_id`, `sub_category_unisex_id`, `size`, `image`, `stock`) VALUES
-(33, 'cotton tshirt', '1200.00', 'Soft, breathable, and effortlessly stylish, our cotton t-shirt is the ultimate wardrobe staple. Crafted from high-quality cotton fabric, it offers all-day comfort and versatility for any occasion.', NULL, NULL, NULL, NULL, 'M', '66376b9fc37d6_cottonshirt2.png', '12');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_categories`
+-- Table structure for table `sub_categories_men`
 --
 
-CREATE TABLE `sub_categories` (
-  `sub_id` int(11) NOT NULL,
-  `name` varchar(200) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sub_categories`
---
-
-INSERT INTO `sub_categories` (`sub_id`, `name`, `category_id`) VALUES
-(1, 'T-shirt', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sub_categories_female`
---
-
-CREATE TABLE `sub_categories_female` (
+CREATE TABLE `sub_categories_men` (
   `ID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `sub_categories_female`
+-- Dumping data for table `sub_categories_men`
 --
 
-INSERT INTO `sub_categories_female` (`ID`, `Name`, `category_id`) VALUES
-(1, 'Jeans', 2),
-(2, 'Top', 2),
-(3, 'Jacket', 2),
-(4, 'Sweater', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sub_categories_male`
---
-
-CREATE TABLE `sub_categories_male` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sub_categories_male`
---
-
-INSERT INTO `sub_categories_male` (`ID`, `Name`, `category_id`) VALUES
+INSERT INTO `sub_categories_men` (`ID`, `Name`, `category_id`) VALUES
 (1, 'Pant', 1),
 (2, 'Shirt/T-shirt', 1),
 (3, 'Jacket', 1),
@@ -240,6 +193,28 @@ INSERT INTO `sub_categories_unisex` (`ID`, `Name`, `category_id`) VALUES
 (2, 'Hoodie', 3),
 (3, 'Sweatpants', 3),
 (4, 'WindCheater', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_categories_women`
+--
+
+CREATE TABLE `sub_categories_women` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `category_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sub_categories_women`
+--
+
+INSERT INTO `sub_categories_women` (`ID`, `Name`, `category_id`) VALUES
+(1, 'Jeans', 2),
+(2, 'Tops', 2),
+(3, 'Jacket', 2),
+(4, 'Skirt', 2);
 
 -- --------------------------------------------------------
 
@@ -305,28 +280,14 @@ ALTER TABLE `payment`
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `category_id` (`category_id`),
-  ADD KEY `sub_category_female_id` (`sub_category_female_id`),
-  ADD KEY `sub_category_male_id` (`sub_category_male_id`),
+  ADD KEY `sub_category_female_id` (`sub_category_women_id`),
+  ADD KEY `sub_category_male_id` (`sub_category_men_id`),
   ADD KEY `sub_category_unisex_id` (`sub_category_unisex_id`);
 
 --
--- Indexes for table `sub_categories`
+-- Indexes for table `sub_categories_men`
 --
-ALTER TABLE `sub_categories`
-  ADD PRIMARY KEY (`sub_id`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- Indexes for table `sub_categories_female`
---
-ALTER TABLE `sub_categories_female`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- Indexes for table `sub_categories_male`
---
-ALTER TABLE `sub_categories_male`
+ALTER TABLE `sub_categories_men`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `category_id` (`category_id`);
 
@@ -334,6 +295,13 @@ ALTER TABLE `sub_categories_male`
 -- Indexes for table `sub_categories_unisex`
 --
 ALTER TABLE `sub_categories_unisex`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Indexes for table `sub_categories_women`
+--
+ALTER TABLE `sub_categories_women`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `category_id` (`category_id`);
 
@@ -357,7 +325,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `category_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `nav`
@@ -387,30 +355,24 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sub_categories`
+-- AUTO_INCREMENT for table `sub_categories_men`
 --
-ALTER TABLE `sub_categories`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `sub_categories_female`
---
-ALTER TABLE `sub_categories_female`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `sub_categories_male`
---
-ALTER TABLE `sub_categories_male`
+ALTER TABLE `sub_categories_men`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sub_categories_unisex`
 --
 ALTER TABLE `sub_categories_unisex`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `sub_categories_women`
+--
+ALTER TABLE `sub_categories_women`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -447,33 +409,27 @@ ALTER TABLE `payment`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`),
-  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`sub_category_female_id`) REFERENCES `sub_categories_female` (`ID`),
-  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`sub_category_male_id`) REFERENCES `sub_categories_male` (`ID`),
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`sub_category_women_id`) REFERENCES `sub_categories_women` (`ID`),
+  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`sub_category_men_id`) REFERENCES `sub_categories_men` (`ID`),
   ADD CONSTRAINT `product_ibfk_4` FOREIGN KEY (`sub_category_unisex_id`) REFERENCES `sub_categories_unisex` (`ID`);
 
 --
--- Constraints for table `sub_categories`
+-- Constraints for table `sub_categories_men`
 --
-ALTER TABLE `sub_categories`
-  ADD CONSTRAINT `sub_categories_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
-
---
--- Constraints for table `sub_categories_female`
---
-ALTER TABLE `sub_categories_female`
-  ADD CONSTRAINT `sub_categories_female_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
-
---
--- Constraints for table `sub_categories_male`
---
-ALTER TABLE `sub_categories_male`
-  ADD CONSTRAINT `sub_categories_male_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
+ALTER TABLE `sub_categories_men`
+  ADD CONSTRAINT `sub_categories_men_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 
 --
 -- Constraints for table `sub_categories_unisex`
 --
 ALTER TABLE `sub_categories_unisex`
   ADD CONSTRAINT `sub_categories_unisex_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
+
+--
+-- Constraints for table `sub_categories_women`
+--
+ALTER TABLE `sub_categories_women`
+  ADD CONSTRAINT `sub_categories_women_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
