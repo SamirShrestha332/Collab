@@ -24,7 +24,7 @@
 </style> -->
 <body>
   <header>
-    <img src="./logo/infinity_logo.png"  alt="Infinite logo">
+    <img src="logo/infinity_logo.png"  alt="Infinite logo">
     <h2>Admin </h2>
     <ion-icon name="sunny-outline" class="light"></ion-icon>
   </div>
@@ -64,11 +64,105 @@
 
     </div>
 
-     <input class="btn btn-primary" type="submit" value="Submit">
+     <input class="btn btn-primary" type="submit" id="SubmitBtn" value="Submit">
 
    </form>
+
+  </div>
    
-  
+  <!-- <div class="categories_section">
+    <h2>Categories Section</h2>
+
+    <form action="">
+      <label for="category">Select  Category:</label>
+      <select  name="Category" id="Category" placeholder="Select">
+        <option name="Men">Men</option>
+        <option name="Women">Women</option>
+        <option name="Unisex">Unisex</option>
+        </select>
+      
+      
+
+    </form>
+    
+  </div> -->
+
+  <div class="categories-section">
+    <h2>Categories Section</h2>
+    <form action="categorydatapush.php"
+     method="post"
+     enctype="multipart/form-data">
+        <!-- Category Selection -->
+        <label for="category">Select Category:</label>
+        <select name="Category" id="Category">
+            <option value="" disabled selected>Select</option>
+            <option value="Men">Men</option>
+            <option value="Women">Women</option>
+            <option value="Unisex">Unisex</option>
+        </select>
+
+        <!-- Sub-Category Selection -->
+        <label for="sub-category">Select Sub-Category:</label>
+        <select name="Sub-Category" id="Sub-Category">
+            <option value="" disabled selected>Select</option>
+            <option value="Pant">Pant</option>
+            <option value="T-shirt">Tshirt</option>
+            <option value="Sweater">Sweater</option>
+            <option value="Jacket">Jacket</option>
+            <option value="Hoodies">Hoodies</option>
+            <option value="Sweatshirt">Sweatshirt</option>
+            <!-- Add more sub-categories as needed -->
+        </select>
+
+        <!-- Product Details -->
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" name="product-name" placeholder="Enter product name">
+
+        <label for="product-image">Product Image:</label>
+        <input type="file" id="product-image" name="product-image">
+
+        <label for="product-description">Product Description:</label>
+        <textarea id="product-description" name="product-description" placeholder="Enter product description"></textarea>
+
+        <label for="product-price">Product Price:</label>
+        <input type="number" id="product-price" name="product-price" placeholder="Enter product price">
+
+        <label for="product-stock">Product Stock:</label>
+        <input type="number" id="product-stock" name="product-stock" placeholder="Enter product stock">
+
+        <label for="product-size">Product Size:</label>
+        <div class="sizes">
+          <div class="s1">
+            <input type="radio" name="product-size" id='size_xxl' value="XXL">
+            <label for="size_xxl">XXL</label>
+            
+      </div>
+
+      <div class="s2">
+        <input type="radio" name="product-size" id='size_xl' value="XL">
+        <label for="size_xxl">XL</label>
+        
+      </div>
+
+      <div class="s3">
+        <input type="radio" name="product-size" id='size_m' value="M">
+        <label for="size_xxl">M</label>
+        
+      </div>
+
+      <div class="s4">
+        <input type="radio" name="product-size" id='size_s' value="S">
+        <label for="size_xxl">S</label>
+        
+      </div>
+        
+      </div>
+
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" id="addBtn">Add Product</button>
+    </form>
+</div>
 </body>
 <script  src="app.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

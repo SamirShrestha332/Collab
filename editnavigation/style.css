@@ -6,7 +6,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Open-Sans", sans-serif;
+    font-family: "Fredoka", sans-serif;
 }
 .container{
     display: flex;
@@ -45,24 +45,27 @@ header img{
 header{
     position: sticky;
     top:0;
+    z-index: 2;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content:center;
     border-bottom:1px solid rgb(183, 69, 211);
+    background-color: white;
    
     
     
    
 }
-form{
-    width: 50%;
-    height: 50%;
-    
-}
+
 .darkmode{
     background-color: #3b3939;
     color: white;
+}
+.navbar_active{
+    background-color: #3b3939;
+    color: white;
+    
 }
 .light{
     font-size: 2.1em;
@@ -126,4 +129,55 @@ form{
 
 
   }
+.categories-section{
+     height: auto;
+     width: 100%;
 
+     padding: 40px 20px;
+}
+.categories-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+form {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.categories-section form select,input,textarea{
+    margin-top: 30px;
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#addBtn{
+    margin-top: 30px;
+    width: 60%;
+
+    border: none;
+    cursor: pointer;
+}
+#submitBtn{
+    margin-top: 30px;
+    width: 40%;
+    border: none;
+    cursor: pointer;
+}
+.sizes{
+    display: flex; 
+    justify-content: center;
+     gap: 40px;
+
+}
+.sizes input{
+    width: 40px;
+}
