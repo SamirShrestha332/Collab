@@ -169,8 +169,7 @@ document
   });
 
 // JavaScript code to handle the click event on the "Sale" link
-document
-  .querySelector('a[href="#Sale"]')
+document.querySelector('a[href="#Sale"]')
   .addEventListener("click", function (event) {
     event.preventDefault(); // Prevent the default behavior of the link
 
@@ -217,11 +216,7 @@ document
       item.style.display = "block";
     });
   });
-  let filter_icon=document.querySelector('.filter_icon');
-  let filter_box=document.querySelector('.filter-box')
-  filter_icon.addEventListener('click',()=>{
-   filter_box.classList.toggle('filter-active');
-})
+ 
 
 
 // Function to update the count display with the latest data
@@ -241,4 +236,7 @@ function updateCountDisplay() {
 
 // Call the function to update the count display
 updateCountDisplay();
+
+
+
 

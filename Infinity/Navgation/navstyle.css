@@ -293,7 +293,7 @@ p {
 button .crossbtn {
   font-size: 40px;
 
-  color: black;
+  color: white;
 }
 .menu {
   display: flex;
@@ -314,7 +314,12 @@ button .crossbtn {
   margin-top: 2em;
 }
 .menu ul li a {
-  color: #000;
+
+  color: white;
+}
+.menu ul li a:hover{
+  
+  color: wheat;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -382,6 +387,7 @@ button .crossbtn {
   }
   .closenavdiv {
     backdrop-filter: blur(20px);
+    color: white;
   }
 
   .logo {
@@ -546,7 +552,8 @@ button .crossbtn {
   position: fixed;
   top: 10%;
   padding: 2%;
- 
+  display: flex;
+  gap: 10px;
   width: 100%;
 
 }
@@ -606,11 +613,9 @@ button .crossbtn {
   outline: black;
   transition: border-color 0.3s ease;
 }
-
 .filter-item select:focus {
   border-color: #f022fb;
 }
-
 /* Styles for Product Grid */
 .products-grid {
   display: grid;
@@ -647,7 +652,6 @@ width: 100%;
 
 .product {
   padding: 10px;
-  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -667,57 +671,23 @@ width: 100%;
 .filter-item {
   margin-top: -10px;
 }
-
-
 .product-card {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   place-items: center;
-  width: 100%;
-
-
-  
+  width: 100%;  
 }
-
-
-
-
-
-
-
-
-
-
 .buy{
   background-color: #d45ce4;
   border-radius: 6px;
   padding: 10px;
   border: 0;
   outline: none;
-  cursor: pointer;
   width: 57%;
   font-size: 16px;
   color: #f5ebeb;
   text-align: center;
   cursor: pointer;
-}
-
-.filter_icon{
-  display: none;
-  cursor: pointer;
-  width: 50px;
-}
-.filter-active{
-  background:linear-gradient(120deg,#beb2ffd1,#f4978eca) ;
-
-  padding: 1.4%;
-  margin: 1.8% 0%;
-  border-radius: 20px;
-  position: fixed;
-  left: 0;
-  outline: black;
-  box-shadow: 0 0 10px rgba(250, 246, 249, 0.1);
-  width: 20%;
 }
 
 
@@ -740,14 +710,11 @@ width: 100%;
     
   }
  
-  button{
-    width: 100%;
-    height: 10%;
-    font-size: 0.8em;
-  }
+  
 .filter-box{
   position: fixed;
-  left: -50%;
+  top: 15%;
+  left: 0%;
 }
 .products-grid{
   width: 50%;
@@ -755,9 +722,7 @@ width: 100%;
   margin-left: 35%;
 }
   
-  .filter_icon{
-    display: block;
-  }
+
  
 }
 .cartitems{
@@ -775,9 +740,8 @@ width: 100%;
   display: flex;
   flex-direction: column;
  
- 
-
 }
+
 .cartitems .item {
   display: flex;
   background-color: white;
@@ -796,4 +760,18 @@ width: 100%;
   border: none;
   outline: none;
   background-color: transparent;
+}
+@media  screen and (max-width:500px){
+  .filter-box{
+    width: 30%;
+    font-size: 0.8em;
+    font-weight: 600;
+    position: relative;
+    z-index: -1;
+    left: 2%;
+    
+  }.filter-box h2{
+    letter-spacing: 5px;
+    padding:10px 5px;
+  }
 }
