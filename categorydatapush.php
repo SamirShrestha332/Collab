@@ -83,9 +83,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt = $conn->prepare($productSql);
                 $stmt->bind_param("sdsisiiiiiiii", $productName, $price, $description, $categoryId, $product_image_name, $subcategoriesid_men, $subcategoriesid_women, $subcategoriesid_unisex, $totalStock, $size_xl, $size_xxl, $size_m, $size_s);
                 if ($stmt->execute()) {
-                    echo "Product added successfully!";
+                    echo "
+                    <div class='Sucess_message'>
+                    <h2>Sucess</h2>
+                    <div class='Sucess_body'>
+                    <img src='./logo/tick.png'  alt='tickmark'>
+                    <p>Product Added Successfully!</p>
+                    </div>
+                    </div>";
                 } else {
-                    echo "Error: " . $conn->error;
+                    echo "
+                    <div class='Error_message'>
+                    <h2>Success</h2>
+                    <div class='Error_body'>
+                    <img src='./logo/cross.png'  alt='Crossmark'>
+                    <p>Fail to Add Product!</p>
+                    </div>
+                    </div>
+                    
+                    ";
                 }
                 $stmt->close();
             } else {
@@ -102,3 +118,92 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Bebas+Neue&family=Fredoka:wght@300..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+}    
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+}
+.Sucess_message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 40px;
+    flex-direction: column;
+    border: 2px solid green;
+    border-radius: 10px;
+}
+.Sucess_body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 3px;
+    flex-direction: column;
+   
+}
+.Sucess_body img{
+    max-width:100px;
+}
+.Sucess_body p{
+    font-weight: 500;
+}
+.Error_message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 40px;
+    flex-direction: column;
+    border: 2px solid red;
+    border-radius: 10px;
+}
+.Error_body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 3px;
+    flex-direction: column;
+   
+}
+.Error_body img{
+    max-width:100px;
+}
+.Error_body p{
+    font-weight: 500;
+}
+
+</style>
+
+
+
+
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
