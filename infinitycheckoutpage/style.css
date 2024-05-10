@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 5px;
+    padding: 0;
+}
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+
+.checkout-title {
+    font-size: 23px; 
+    margin-bottom: -20px; 
+}
+
+
+
+/* Checkout Page Styling */ 
+.checkout-page {
+    height: auto; 
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.checkout-page .basic-details {
+    width: 50%; 
+}
+
+.checkout-page .basic-details h4,
+.checkout-page .order-summary .summary-title,
+.checkout-page .payment-method h4 {
+    color: rgb(255, 255, 255);
+    background-color: rgb(201, 145, 203);
+    text-transform: uppercase;
+    padding: 5px;
+    margin-bottom: 20px;
+    display: block;
+} 
+
+.checkout-page .checkout-form .form-group {
+    margin: 10px 5px;
+    width: calc(100% - 10px); 
+}
+
+.checkout-page .checkout-form label {
+    display: block;
+    color: rgb(81, 77, 77);
+    margin-bottom: 6px;
+}
+
+.checkout-page .checkout-form input,
+.checkout-page .checkout-form select,
+.checkout-page .checkout-form textarea {
+    width: 100%;
+    padding: 8px 5px;
+}
+
+.checkout-page .form-inline {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.order-summary {
+    width: 35%; 
+    background-color: #ffffff; 
+    border: 1px solid rgb(185, 177, 177);
+    padding: 10px;
+    margin-left: 5px; 
+    margin-bottom: 300px;
+    box-shadow: 6px 9px 8px rgba(0, 0, 0, 0.1); 
+}
+
+ 
+
+
+
+
+.summary-box {
+    
+    margin-bottom: 0px;
+}
+
+.summary-box h4 {
+    margin-top: 10px;
+}
+
+.summary-details p {
+    margin: 5px 0;
+}
+
+.promo-code input {
+    width: 60%;
+}
+
+.promo-code button {
+    padding: 5px 10px;
+    background-color: rgb(201, 145, 203);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 5px ;
+}
+.promo-code button:hover {
+    background-color:  rgb(212, 140, 214);
+}
+
+.payment-method {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.payment-method div {
+    text-align: center; 
+    margin-right: 10px; 
+}
+
+.payment-logo {
+    width: 70px;
+    height: auto; 
+}
+
+.payment-method p {
+    margin: 5px 0 0; 
+}
+
+
+.payment-method input[type="radio"] {
+    display: none;
+}
+
+
+
+
+.place-order-btn {
+    width: 100%;
+    padding: 10px;
+    background-color:   rgb(201, 145, 203);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.place-order-btn:hover {
+    background-color:  rgb(212, 140, 214);
+}
