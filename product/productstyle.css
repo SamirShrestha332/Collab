@@ -39,10 +39,23 @@
 
   display: flex;
   align-items: start;
-  gap: 20px;
+  gap: 13px;
   padding: 0px 10px;
-}
+  width: auto;
 
+
+}
+.icons .count{
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  font-size: 13px;
+  font-weight: bolder;
+  position: relative;
+  left: -20px;
+}
 
 nav{
   display: flex;
@@ -280,15 +293,6 @@ cursor: pointer;
 
 
   
- 
-
-  
- 
-  
-
-
-
-
 body{
   overflow-x:hidden;
 }
@@ -303,6 +307,43 @@ body{
 .burger{
   display: none;
  width: 300px;
+}
+.cartitems{
+  position: absolute;
+
+  right:100%;
+  overflow-y:scroll;
+  width:200px;
+  height:200px;
+  background-color: rgba(0, 0, 0, 0.27);
+  backdrop-filter: blur(6px);
+  padding:12px;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+ 
+ 
+
+}
+.cartitems .item {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  gap: 17px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.cartitems .item img{
+ border-radius: 5px;
+}
+.cartitems .item button ion-icon{
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
 
@@ -635,6 +676,10 @@ font-size: 0.6em;
  
    
 } 
+
+body{
+  overflow-x:hidden;
+}
 @media only screen and (max-width: 600px) {/* PHONE */
   .search-bar {
     width: 400px;
@@ -674,32 +719,34 @@ font-size: 0.6em;
 
     height: 100vh;
     display: flex;
+
 }  
 .productsection .imageside{
-    width: 70%;
+    width: 60%;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
         padding: 20px;
+        background-color: red;
     }
 
 .productsection .details{
     text-align: center;
     padding: 10px 20px;
-width: 30%;
+width: 40%;
 border-left: 2px solid rgba(0, 0, 0, 0.479);
 
 
 }
 
 .imgcontainer{
-
     display: flex;
-    
+    justify-content: center;
 }
 .productsection .details .productnameandprice .productprice{
     display: flex;
+    gap: 2px;
 }
 .productsection .details .productnameandprice {
     text-align: left;
@@ -729,6 +776,12 @@ padding:20px 10px;
  letter-spacing: 3px;
 
 }
+.size-action{
+
+  background-color: wheat;
+  transition: 0.5s;
+}
+
 
 .sizesection .size{
     display: flex;
@@ -772,13 +825,16 @@ padding:20px 10px;
     height: 30px;
     font-weight: bold;
     font-size: 12px;
-    outline: none;
-    border: 2px solid wheat;
     border-radius: 5px;
+    border: 1px solid rgba(28, 26, 26, 0.438);
     transition: 0.5s;
+    
+}
+.details .quantitysection button ion-icon{
+  font-size: 0.9rem;
+  font-weight: bolder;
 }
 .details .quantitysection button:hover{
-    background-color: wheat;
     cursor: pointer;
 }
 
@@ -816,21 +872,45 @@ padding:20px 10px;
 .details .cartbuttonsection .cart_button{
     outline: none;
     border: none;
-    padding: 13px 7px;
+    padding: 13px 8px;
     display: flex;
-    justify-content: center;
+   align-items: center;
     gap: 5px;
     border-radius: 6px;
     background-color: #000;
     color: white;
+    word-spacing: 5px;
 }
 .details .cartbuttonsection .cart_button:hover{
-    background-color: wheat;
+    background-color: rgba(0, 0, 0, 0.793);
 
     border:1px solid rgba(0, 0, 0, 0.702);
-    color: black;
+    color: white;
     cursor:pointer;
+
 }
 .cart_button ion-icon{
-    font-size: 20px;
+    font-size: 24px;
+
+    padding: 5px;
+}
+@media screen and (max-width:800px){
+.productsection{
+  flex-direction: column;
+}
+.productsection .imageside {
+  width: 100%;
+}
+.productsection .details{
+  width: 100%;
+  border: none;
+  border-top: 2px solid gray;
+  font-size: 0.9em;
+}
+.productsection .imageside img{
+  width: 47%;
+}
+.productsection .details .Sizes{
+  font-size: 0.9em;
+}
 }
