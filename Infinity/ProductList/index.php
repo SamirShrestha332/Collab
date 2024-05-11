@@ -87,9 +87,9 @@ if ($conn->connect_error) {
       <label for="category">Category:</label>
       <select id="category">
         <option value="all">All</option>
-        <option value="men">Men</option>
-        <option value="women">Women</option>
-        <option value="unisex">Unisex</option>
+        <option value="Men">Men</option>
+        <option value="Women">Women</option>
+        <option value="Unisex">Unisex</option>
       </select>
       <label for="size">Size:</label>
       <select id="size">
@@ -102,6 +102,8 @@ if ($conn->connect_error) {
       <label for="price-range-lower">Price Range:</label>
       <input type="number" id="price-range-lower" name="price-range-lower" placeholder="Lower">
       <input type="number" id="price-range-higher" name="price-range-higher" placeholder="Higher">
+      
+
     </div>
     <!-- Product Cards -->
 
@@ -162,8 +164,7 @@ if ($conn->connect_error) {
 
       <div class="product-cards">
     <?php
-   
-
+  
     $sql = "SELECT product.*, categories.name AS category_name
             FROM product
             INNER JOIN categories ON product.category_id = categories.category_id
@@ -173,6 +174,7 @@ if ($conn->connect_error) {
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $productid=$row['product_id'];
             $productName = $row["name"];
             $productPrice = $row["price"];
             $productImage = $row["image"];
@@ -203,12 +205,22 @@ if ($conn->connect_error) {
 
             echo "
             
-            <form action='checkrequirement.php'>
+            <form action='http://localhost/Infinity/product/product.php' method='post'>
             <div class='product-card' data-category='$productCategory' data-size='$dataSizeAttribute' data-price='$productPrice'>
                       <img src='http://localhost/Infinity/uploads/{$productImage}' alt='$productName'>
                       <h3>$productName</h3>
                       <p>Rs.<span>$productPrice</span></p>
-                      <button class='buy-now-btn'>Buy Now</button>
+                      <input type='hidden' name='product_description' value='$description'>
+                      <input type='hidden' name='product_name' value='$productName'>
+                      <input type='hidden' name='product_image' value='http://localhost/Infinity/uploads/{$productImage}'>
+                      <input type='hidden' name='product_size' value='$dataSizeAttribute'>
+                      <input type='hidden' name='product_price' value='$productPrice'>
+                      <input type='hidden' name='sizeS' value='$sizeS'>
+                      <input type='hidden' name='sizeXL' value='$sizeXL'>
+                      <input type='hidden' name='sizeXXL' value='$sizeXXL'>
+                      <input type='hidden' name='sizeM' value='$sizeM'>
+                      <button class='buy-now-btn' type='submit'>Buy Now</button>
+
                       <button class='view-more-btn'>View More</button>
                       <div class='back'>
                           <ion-icon name='close-circle-outline' class='view-more-btn-close'></ion-icon>

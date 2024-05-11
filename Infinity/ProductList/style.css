@@ -574,18 +574,16 @@ button .crossbtn {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 7%;
-    
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    height: 90svh;
-    position:static;
-    top: 30%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.291);
+    width: 25%;
+    height: 100vh;
+    position:fixed;
+    top: 15%;
     left: 0;
-    
+
   }
   
   .filter-options label {
@@ -617,7 +615,7 @@ button .crossbtn {
   
   @media only screen and (max-width: 980px) {
     .filter-options {
-      width: 20%;
+      width: 35%;
       padding: 10px;
     
       
@@ -627,31 +625,32 @@ button .crossbtn {
   .product-cards {
     display: flex;
     flex-wrap: wrap;
-
-    align-items:center;
-    gap: 40px;
-    
     width: 100%;
+    gap: 20px;
+    align-items: center;
     margin-top: 6%;
+    margin-left: 25%;
+    justify-content: center;
     height: auto;
-    justify-content: flex-start; /* Align items to the left */
+   
   }
+ 
   
   .product-card {
-    display: flex;
-    flex-direction: column;
-    width: 300px; /* Fixed width for product cards */
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.374);
-    align-items: center;
-    max-height: 450px;
+    display: grid;
+    width: 100%;
+      grid-gap: 20px;
+      place-items:center;
+      margin: 0px 5%;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.549);
+      border-radius:10px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     
   }
   
   .product-card img {
-    width: 100px; /* Set the desired width */
-    height: 150px; /* Set the desired height */
+    max-width: 150px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
     object-fit: cover; /* Ensure the image covers the entire container */
     
 }
@@ -671,7 +670,7 @@ button .crossbtn {
     font-size: 18px;
     letter-spacing: 3px;
     font-weight: 500;
-    padding: 10px;
+    padding:10px;
     background-color: #f981f9;
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.148);
@@ -688,18 +687,12 @@ button .crossbtn {
       align-items: center;
       justify-content: center;
       height: auto;
-      width: 100%;
+      width: 50%;
     }
-    .product-card {
-      width: calc(33.33% - 20px);
-    }
+    
   }
   
-  @media only screen and (max-width: 480px) {
-    .product-card {
-      width: calc(50% - 20px);
-    }
-  }
+  
   
  .back{
     display: none;
