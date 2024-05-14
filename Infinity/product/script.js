@@ -7,14 +7,15 @@ function openNav() {
     document.querySelector(".closenavdiv").classList.add("crossbtn-active");
     document.querySelector(".closenavdiv").classList.remove("opennav");
   }
+  
   let amount = document.querySelector(".amount");
   let price = parseInt(amount.innerHTML);
   let totalRs = document.querySelector(".totalRs");
   let quantity = document.querySelector(".quantity"); // Corrected spelling of "quantity"
   let number = parseInt(quantity.innerHTML);
-
-//  click funciton of size
-
+  
+  // Click function of size
+  
   let sizeButtons = document.querySelectorAll(".size");
   let previouslyClickedButton = null;
   
@@ -28,16 +29,19 @@ function openNav() {
     });
   });
   
-  //updata total amount
+  // Update total amount
   
-  function updatetotalamount(){
+  function updatetotalamount() {
     let totalprice = price * number;
-    totalRs.innerHTML=totalprice;
+    totalRs.innerHTML = totalprice;
   }
-  updatetotalamount();
+  
+  updatetotalamount(); // Call the function to update total amount
+  
+  
 
 
-// update   quantity
+// // update   quantity
 function addquantity(){
   number++;
   quantity.innerHTML=number;
@@ -57,19 +61,8 @@ function subquantity(){
 
 }
 
-let carticon = document.getElementById('carticon');
-let itemsection = document.querySelector('.cartitems');
 
-carticon.addEventListener('click', () => {
-  let computedStyle = window.getComputedStyle(itemsection);
-  let rightValue = computedStyle.getPropertyValue('right');
 
-  if (rightValue === '0px' || rightValue === '0%') {
-    itemsection.style.right = '-70%';
-  } else {
-    itemsection.style.right = '0%';
-  }
-});
 
 
 function countItems() {
@@ -83,83 +76,164 @@ function countItems() {
 }
 
 countItems();
-function addtocardfun() {
+
+
+
+function removeItem(event) {
+  // Check if the clicked element is the remove button
+  if (event.target.classList.contains('removebtn')) {
+    const item = event.target.closest('.item');
+    
+    // Remove the item from the cart
+    if (item) {
+      
+      const productName = item.querySelector('.productname').textContent;
+      const size = item.querySelector('.addtochartproductsize').textContent;
+
+      // Remove the item from local storage
+      let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      cartItems = cartItems.filter(item => !(item.productname === productName && item.size === size));
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      // Remove the item from the DOM
+      item.remove();
+    }
+  }
+  countItems();
+  updateTotalAmount();
+}
+
+function addToCart() {
   // Selecting the container where the items will be added
-  let container = document.querySelector('.cartitems');
+  let container = document.querySelector('.card_item_container');
 
-  // Creating a div element for the item
-  let itemChild = document.createElement("div");
-  itemChild.setAttribute('class', "item");
+  // Getting the active size button
+  let activeSize = document.querySelector('.size.size-action');
 
-  // Creating an image element
-  let createImage = document.createElement("img");
-  createImage.setAttribute('src', document.getElementById("product_image").getAttribute('src'));
-  createImage.style.width="18.65%";
-  itemChild.appendChild(createImage);
+  // If no size is selected, display an alert and return
+  if (!activeSize) {
+      alert('Please select a size.');
+      return;
+  }
 
-  // Creating a paragraph for the product name
-  let name = document.getElementById('productname').textContent;
-  let productName = document.createElement("p");
-  productName.textContent = name;
-  itemChild.appendChild(productName);
+  // Get product details
+  let productImageSrc = document.querySelector('.imgcontainer img').getAttribute('src');
+  let productname = document.querySelector('#productname').innerHTML;
+  let productamount = document.querySelector('.totalRs').innerHTML;
+  let quantity = document.querySelector('#num_quantity').innerHTML;
+  let sizeValue = activeSize.textContent;
 
-  // Creating a close button with Ionic icon
-  let closeButton = document.createElement("button");
-  let crossitem = document.createElement("ion-icon");
-  crossitem.setAttribute('name',"close-outline");
-  crossitem.setAttribute('class',"item_cross_btn");
-  closeButton.appendChild(crossitem); // Append the icon to the button
-  closeButton.addEventListener("click", function() {
-    // Functionality to remove the item when close button is clicked
-    itemChild.remove();
-    countItems()--;
-  });
-  itemChild.appendChild(closeButton);
+  // Check if there is an existing item with the same product name and size
+  let existingItem = document.querySelector(`.item .productname[name="addtochartproductname"][data-size="${sizeValue}"]`);
+  if (existingItem) {
+      // Update the quantity of the existing item
+      let existingQuantity = existingItem.parentElement.querySelector('.cart_item_quantity');
+      existingQuantity.textContent = parseInt(existingQuantity.textContent) + parseInt(quantity);
+      
+      // Update the total amount of the existing item
+      let existingTotalAmount = existingItem.parentElement.nextElementSibling.querySelector('.total_amount');
+      existingTotalAmount.textContent = parseInt(existingTotalAmount.textContent) + parseInt(productamount);
+      
+      // Update the local storage with the updated item information
+      let items = JSON.parse(localStorage.getItem('cartItems')) || [];
+      items.forEach(item => {
+          if (item.productname === productname && item.size === sizeValue) {
+              item.quantity += parseInt(quantity);
+              item.totalAmount += parseInt(productamount);
+          }
+      });
+      localStorage.setItem('cartItems', JSON.stringify(items));
+  } else {
+      // Create a new item
+      let newElement = document.createElement('div');
+      newElement.innerHTML = `
+          <div class="item"> 
+              <div class="addtocartproductdetails">
+                  <img src="${productImageSrc}" id="img1" alt="product image"/>
+                  <p class="productname" name="addtochartproductname" data-size="${sizeValue}">${productname}</p>
+                  <p class="cart_item_quantity">${quantity}</p>
+              </div>
+              <div class="otherdetails">
+                  <div class="addtochartproductsize" name="addtochartproductsize">${sizeValue}</div>
+                  <div class="addtocartproduct_price">Rs <span class="total_amount">${parseInt(productamount)}</span></div>
+                  <!-- Call removeItem function passing event as argument -->
+                  <button class="removebtn" onclick="removeItem(event)"><ion-icon name="close-outline" onclick="removeItem(event)"></ion-icon></button>
+              </div>
+          </div>
+      `;
 
-  // Appending the item to the container
-  container.appendChild(itemChild);
+      // Store the new item in local storage
+      let items = JSON.parse(localStorage.getItem('cartItems')) || [];
+      items.push({
+          productname: productname,
+          size: sizeValue,
+          quantity: parseInt(quantity),
+          totalAmount: parseInt(productamount)
+      });
+      localStorage.setItem('cartItems', JSON.stringify(items));
+      
+      // Append the new element to the container
+      container.appendChild(newElement);
+  }
 
   countItems();
-  addToCart();
+  updateTotalAmount();
+}
+
+
+
+
+
+
+function updateTotalAmount() {
+  let totalAmount = 0;
+
+  // Select all items in the cart
+  const items = document.querySelectorAll('.item');
+
+  // Loop through each item
+  items.forEach(item => {
+      // Get the product amount and quantity for the current item
+      const productAmount = parseInt(item.querySelector('.total_amount').innerHTML);
+
+    
+
+      // Add the total amount for the current item to the overall total
+      totalAmount += productAmount;
+
+      
+  });
+
+  // Update the total amount displayed for all items combined
+  document.querySelector('.product_amount').innerHTML = totalAmount;
+}
+
+
+// Function to count the number of items in the cart
+function countItems() {
+  let itemCount = document.querySelectorAll('.item').length;
+  document.querySelector('.count').innerHTML=itemCount
   
 }
 
+function crossthecheckout(){
+document.querySelector('.cartitems').style.display='none';
+}
+
+
+
+let cartIcon = document.querySelector('#carticon').addEventListener('click',()=>{
+  document.querySelector('.cartitems').style.display='flex';
+})
 
 function home(){
-  window.href="infinity/index.html"
-}
-function addToCart() {
-  let product = document.getElementById('productname').innerText; // Use innerText to get visible text
-  let price = document.querySelector('.totalRs').innerText.replace('Rs.', '').trim(); // Remove 'Rs.' and trim spaces
-  let size; // Initialize 'size' outside the loop
-  let sizeall = document.querySelectorAll('.size');
-
-  // Loop through all size elements
-  for (let i = 0; i < sizeall.length; i++) {
-    let style = window.getComputedStyle(sizeall[i]);
-    if (style.backgroundColor == 'wheat') {
-      size = sizeall[i].innerText; // Define 'size' outside the loop to make it accessible
-      break; // Exit loop once the size is found
-    }
-  }
-
-  // Error handling if 'size' is not selected
- 
-
-  let quantity = parseInt(document.querySelector('.quantity').innerText); // Convert quantity to a number
-  let productCount = parseInt(document.querySelector('.count').innerText); // Get the product count
-
-  // Create an object for the cart item
-  let cartItem = { product: product, price: parseFloat(price), size: size, quantity: quantity, count: productCount };
-
-  // Retrieve the cart from local storage
-  let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-
-  // Add the new item to the cart
-  cart.push(cartItem);
-
-  // Store the updated cart in local storage
-  localStorage.setItem('cart', JSON.stringify(cart));
+  window.href="http://localhost/Infinity/src/";
 }
 
-// Example usage
+
+
+
+
+
+
+
