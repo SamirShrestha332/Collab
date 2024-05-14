@@ -5,10 +5,13 @@ body {
 }
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     margin-right: 700px;
     margin-top: 20px;
     margin-bottom: 30px;
+
+
 }
 
 
@@ -22,7 +25,11 @@ body {
     color: red;
 }
 
+.logo{
+    position: relative;
+    left: 10px;
 
+}
 
 
 /* Checkout Page Styling */ 

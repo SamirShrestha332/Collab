@@ -11,6 +11,9 @@
 </head>
 <body>
     <div class="header">
+    <div class="logo">
+        <a href="http://localhost/Infinity/src"><img src="http://localhost/Infinity//Images/infinity_logo.png" width="80px"></a>
+      </div>
 <h1 class="checkout-title">Checkout Page</h1>
 </div>
 
