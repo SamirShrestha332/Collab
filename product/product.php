@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -63,7 +63,10 @@
         // echo "Size M: " . $sizeM . "<br>";
         // Or perform any other actions with the product details and sizes
     }
-    ?>
+
+
+
+    ?> -->
     
 
 <!DOCTYPE html>
@@ -104,25 +107,17 @@
                 </div>
                 <nav>
                     <ul class="navlinks">
-                        <li><a href="#newin">Newin</a></li>
-                        <li><a href="#men" class="menindicator">Men</a></li>
-                        <li><a href="#women"class="womenindicator">Women</a></li>
-                        <li><a href="#unisex"  class="unisexindicator">Unisex</a></li>
-                        <li><a href="#Sale">Sale</a></li>
+                        
+                    <li><a href="http://localhost/Infinity/ProductList/men.php">Men</a></li>
+                    <li><a href="http://localhost/Infinity/ProductList/women.php">Women</a></li>
+                    <li><a href="http://localhost/Infinity/ProductList/unisex.php">Unisex</a></li>
+                      
                         <!-- <?php echo $listItems; ?> -->
                        
                     </ul>
                 </nav>
 
                 <div class="icons">
-                  <a href="#footer">
-                    <lord-icon
-                    src="https://cdn.lordicon.com/rsvfayfn.json"
-                    trigger="hover"
-                    style="width:40px ;">
-                </lord-icon>
-              </a>
-
               
                 <lord-icon
                 class="carticon"
@@ -140,32 +135,54 @@
                 
                
             </div>
+          
             <div class="cartitems">
-                <!-- <div class="item"> 
-                     <img src="/product/productimage/cottonshirt.jpg"  width="18.65%" id="img1" alt="product image"/>
-                    <p class="productname">Cotton Shirt</p>
+                 <div class="card_item_container">
+                     <form action="./checkout/"> 
+                        <div class="heading">
+                             <img src="delivery-truck.png"> 
+                             <ion-icon name="close-outline" class="addtocart_cross_btn" onclick="crossthecheckout()"></ion-icon>
+                            </div>
+
+                    <!-- <div class="item"> 
+                        <div class="addtocartproductdetails">
+                     <img src="./productimage/cottonshirt.jpg"   id="img1"  alt="product image"/>
+                    <p class="productname" name="addtochartproductname">Cotton Shirt</p>
+                    <button><ion-icon name="remove-outline"></ion-icon></button>
                     <p class="cart_item_quantity">1</p>
-                    <button ><ion-icon name="close-outline" class="item_cross_btn" ></ion-icon></button>
-                    
+                    <button> <ion-icon name="add-outline"></ion-icon> </button>
                 </div>
-            -->
-                 <!-- <div class="item">
-                    <img src="/product/productimage/cottonshirt2.png"  width="18.65%"  id="img2"  alt="product image"/>
-                    <p class="productname">Cotton Shirt</p>
-                    <p class="cart_item_quantity">1</p>
-                    <button ><ion-icon name="close-outline" class="item_cross_btn" ></ion-icon></button>
+            
+                 <div class="otherdetails">
+                    <div class="addtochartproductsize" name="addtochartproductsize">S</div>
+                    <div class="addtocartproduct_price">Rs <span class="total_amount">...</span></div>
+                </div>
+                </div> -->
+
                     
-                </div>   -->
+                     <div class="checkoutbutoonsection">
+                     <div class="addtocarttotal">
+                        <p>Total:</p> 
+                        <div class="totalamount">
+                        <span class="unit">Rs.</span>
+                        <span class="product_amount">1000</span>
+                    </div>
+                    </div>
+                   <button type="submit" >Check out</button>
+                     </div>
+                     
+</form>
+                
+            </div>    
             </div>
             <div class="closenavdiv">
             <button onclick="closeNav()"><ion-icon name="close-outline" class="crossbtn" ></ion-icon></button>
             <nav class="menu">
               <ul class="navlinks1">
-                  <!-- <li><a href="#newin">New in</a></li>
-                  <li><a href="#men"  class="menindicator">Men</a></li>
-                  <li><a href="#women">Women</a></li>
+                   <li><a href="#men"  class="menindicator">Men</a></li>
+                   <li><a href="#women">Women</a></li>
                   <li><a href="#unisex">Unisex</a></li>
-                  <li><a href="#Sale">Sale</a></li> -->
+                 
                   <!-- <?php echo $listItems; ?> -->
                  
               </ul>
@@ -177,22 +194,22 @@
               
                 <div class="imageside">
                     <div class="imgcontainer">
-                        <img id="product_image"src="<?php echo  $productImage ?>" alt="cotton shirt" width="45%">
+                        <img id="product_image" src="<?php echo  $productImage?>" alt="cotton shirt" >
                     
                     </div>
                     
                     <div class="imgdescription">
-                        <h4>Descriprion</h4>
-                        <p><?php echo  $productDescription ?></p>
+                        <h4>Description</h4>
+                        <p><?php echo  "$productDescription" ?></p>
                     </div>
                 </div>
                 
                 <div class="details">
                     <div class="productnameandprice">
-                        <h4 id="productname"><?php echo  $productName ?></h4>
+                        <h4 id="productname"><?php echo $productName ?></h4>
                        
                         <div class="productprice">
-                        <p>Rs.</p><p class="amount"><?php echo $productPrice ?></p>
+                        <p>Rs.</p> <p class="amount"><?php echo $productPrice ?></p>
                     </div>
                     </div>
 
@@ -215,16 +232,16 @@
                         </div>
                 </div>
                 <div class="totalpricesection">
-                    <h4>Total Amount:<?php echo  $productPrice ?></h4>
+                    <h4>Total Amount:</h4>
                      <div class="totalamountsection">
                         <span class="unit">Rs.</span>
-                        <span class="totalRs">1200</span>
+                        <span class="totalRs"><?php echo  $productPrice ?></span>
                      </div>
                 </div>
 
 
                 <div class="cartbuttonsection">
-                        <button class="cart_button" onclick="addtocardfun()">Add to Carts <ion-icon name="cart-outline"></ion-icon></button>
+                        <button class="cart_button" onclick="addToCart()">Add to Carts <ion-icon name="cart-outline"></ion-icon></button>
                     </div>
                 </div>
             </div>
