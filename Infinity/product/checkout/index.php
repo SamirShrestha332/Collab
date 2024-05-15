@@ -1,3 +1,19 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "infinity";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+?>
 
 
 
@@ -49,21 +65,45 @@
             
         
     </div>
+
     <div class="order-summary">
-        <div class="summary-box">
-            <h4 class="summary-title">Order Summary</h4>
-            <div class="summary-details">
-                <p>Subtotal: Rs.4000</p>
-                <p>Delivery Charge: Rs.300</p>
-                <hr>
-                <p>Total: Rs.4300</p>
+            <div class="summary-box">
+                <h4 class="summary-title">Order Summary</h4>
+                <div class="summary-details">
+                    
+                       <div class="productSelected">
+                                <div class="productname">
+                                    <h6>Product(s) Selected:</h6>
+                                    <ul id="productNames">
+                                    </ul>
+                                </div>
+
+                                <div class="quantity">
+                                    <h6>Product(s) quantity:</h6>
+                                    <ul id="productQuantity">
+                                    </ul>
+                                </div>
+                                
+                                    <div class="productpayment">
+                                        <h6>Product(s) Amount:</h6>
+                                        <ul id="productAmounts"> 
+                                        </ul>
+                                    </div>
+                         </div>
+                    <!-- Display total amount -->
+                    <p id="subtotal">Subtotal: Rs. <span id="subtotalAmount"></span></p>
+                    <p>Delivery Charge: Rs. <span id="deliveryCharge">300</span></p>
+                    <hr>
+                    <p id="total">Total: Rs. <span id="totalAmount"></span></p>
+
+                    <!-- Promo code and Payment Method sections -->
+                </div>
                 <div class="promo-code">
                     <input type="text" placeholder="Enter Promo Code">
                     <button type="button">Apply</button>
                 </div>
-            </div>
-            <h4 class="summary-title">Payment Method</h4>
-            <div class="payment-method">
+                <h4 class="summary-title">Payment Method</h4>
+                <div class="payment-method">
                 <div>
                     <label for="cash-on-delivery">
                         <img src="delivery.png" alt="Cash on Delivery" class="payment-logo">
@@ -85,58 +125,15 @@
                     <p>Esewa</p>
                     <input type="radio" id="esewa" name="payment-method" value="esewa">
                 </div>
+
+
+
+
             </div>
-            <button class="place-order-btn" type="submit">Place Order</button> 
-        </form>
+            <button class="place-order-btn" type="submit">Place Order</button>
+        </div>
     </div>
-    </div>
-</div> 
-<script>
+    <script src="script.js"></script>
 
-    document.getElementById("checkout-form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent default form submission
-        if (validateForm()) {
-            this.submit(); // Submit the form if validation passes
-        }
-    });
-    function validateForm() {
-        const name = document.forms["checkout-form"]["name"].value;
-        const address = document.forms["checkout-form"]["address"].value;
-        const contact = document.forms["checkout-form"]["contact"].value;
-        const email = document.forms["checkout-form"]["email"].value;
-        const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
-    
-        // Validate name, address, contact, and email
-        if (!name || !address || !contact || !email) {
-            alert("Please fill in all required fields.");
-            return false;
-        }
-    
-        // Validate contact number (10 digits)
-        const contactRegex = /^\d{10}$/;
-        if (!contact.match(contactRegex)) {
-            alert("Contact number must be 10 digits.");
-            return false;
-        }
-    
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email.match(emailRegex)) {
-            alert("Please enter a valid email address.");
-            return false;
-        }    
-        // Validate payment method selection
-        if (!paymentMethod) {
-            alert("Please select a payment method.");
-            return false;
-        }
-        
-        // Additional validation logic if needed
-        return true;
-    }
-    
-
-
-</script>
-</body> 
+</body>
 </html>

@@ -102,7 +102,6 @@ function removeItem(event) {
   countItems();
   updateTotalAmount();
 }
-
 function addToCart() {
   // Selecting the container where the items will be added
   let container = document.querySelector('.card_item_container');
@@ -185,6 +184,7 @@ function addToCart() {
 
 
 
+
 function updateTotalAmount() {
   let totalAmount = 0;
 
@@ -206,6 +206,7 @@ function updateTotalAmount() {
 
   // Update the total amount displayed for all items combined
   document.querySelector('.product_amount').innerHTML = totalAmount;
+  document.querySelector(".hiddenprice").innerHTML=totalAmount;
 }
 
 

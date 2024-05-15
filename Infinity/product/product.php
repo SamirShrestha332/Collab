@@ -138,7 +138,7 @@
           
             <div class="cartitems">
                  <div class="card_item_container">
-                     <form action="./checkout/"> 
+                     <form action="./checkout/index.php" method="POST"> 
                         <div class="heading">
                              <img src="delivery-truck.png"> 
                              <ion-icon name="close-outline" class="addtocart_cross_btn" onclick="crossthecheckout()"></ion-icon>
@@ -165,7 +165,8 @@
                         <p>Total:</p> 
                         <div class="totalamount">
                         <span class="unit">Rs.</span>
-                        <span class="product_amount">1000</span>
+                        <span class="product_amount" name="total_Amount">1000</span>
+                       <input type="hidden"   name="hiddenprice" class="hiddenprice">
                     </div>
                     </div>
                    <button type="submit" >Check out</button>
