@@ -5,6 +5,13 @@ $username = 'root';
 $password = ''; // Replace with your actual password
 $dbname = 'infinity';
 
+// for fetching the name form the foreign key
+//SELECT categories.name,product.category_id FROM product inner join categories on product.category_id=categories.category_id;
+
+
+
+
+
 // Create database connection
 $conn = new mysqli($host, $username, $password, $dbname);
 
@@ -18,19 +25,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subCategory = $_POST['Sub-Category'];
     $productName = $_POST['product-name'];
     $description = $_POST['product-description'];
-    $price = floatval($_POST['product-price']);
-    $size = $_POST['product-size'];
-    $stock = floatval($_POST['product-stock']);
+    $price = $_POST['product-price'];
+
+    $size_xl = $_POST['size_xl'];
+    $size_xxl = $_POST['size_xxl'];
+    $size_m = $_POST['size_m'];
+    $size_s = $_POST['size_s'];
+    $totalStock = $size_xl + $size_xxl + $size_m + $size_s;
+    $subcategoriesid_men = null;
+    $subcategoriesid_women = null;
+    $subcategoriesid_unisex = null;
+    $is_hidden=0;
+
+    if ($category == 'Men') {
+        $stmt = $conn->prepare("SELECT ID FROM sub_categories_men WHERE Name = ?");
+    } elseif ($category == 'Women') {
+        $stmt = $conn->prepare("SELECT ID FROM sub_categories_women WHERE Name = ?");
+    } elseif ($category == 'Unisex') {
+        $stmt = $conn->prepare("SELECT ID FROM sub_categories_unisex WHERE Name = ?");
+    }
+
+    if ($stmt) {
+        $stmt->bind_param("s", $subCategory);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            if ($category == 'Men') {
+                $subcategoriesid_men = $row['ID'];
+            } elseif ($category == 'Women') {
+                $subcategoriesid_women = $row['ID'];
+            } elseif ($category == 'Unisex') {
+                $subcategoriesid_unisex = $row['ID'];
+            }
+        }
+        $stmt->close();
+    }
 
     // Query to select category ID based on category name
-    $categoryQuery = "SELECT category_id FROM categories WHERE name = '$category'";
-    $categoryResult = $conn->query($categoryQuery);
+    $categoryQuery = "SELECT category_id FROM categories WHERE name = ?";
+    $categoryStmt = $conn->prepare($categoryQuery);
+    $categoryStmt->bind_param("s", $category);
+    $categoryStmt->execute();
+    $categoryResult = $categoryStmt->get_result();
 
-    if ($categoryResult && $categoryResult->num_rows > 0) {
+    if ($categoryResult->num_rows > 0) {
         $row = $categoryResult->fetch_assoc();
         $categoryId = $row['category_id'];
 
-        // Check if file is uploaded
         if (isset($_FILES['product-image']) && $_FILES['product-image']['error'] === UPLOAD_ERR_OK) {
             // Image upload
             $targetDir = 'C:/xampp/htdocs/Infinity/uploads/'; // Define your target directory
@@ -41,16 +84,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Image moved successfully
                 // Now insert the image filename into the product table
                 $product_image_name = $imageName; // Use the generated unique image name
-
-                // Insert product data
-                $productSql = "INSERT INTO product (name, price, description, category_id, image, size, stock) 
-                               VALUES ('$productName', $price, '$description', $categoryId, '$product_image_name', '$size', $stock)";
-
-                if ($conn->query($productSql) === TRUE) {
-                    echo "Product added successfully!";
+                $productSql = "INSERT INTO product 
+                (name, price, description, category_id, image, sub_category_men_id, sub_category_women_id, sub_category_unisex_id, stock, size_XL, size_XXL, size_M, size_S, is_hidden)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            $stmt = $conn->prepare($productSql);
+            if ($stmt === false) {
+                throw new Exception('Prepare statement failed: ' . $conn->error);
+            }
+        
+            // Bind the parameters to the SQL query
+            $stmt->bind_param(
+                "sdsisiiiiiiiii", 
+                $productName, $price, $description, $categoryId, $product_image_name, 
+                $subcategoriesid_men, $subcategoriesid_women, $subcategoriesid_unisex, 
+                $totalStock, $size_xl, $size_xxl, $size_m, $size_s, $is_hidden
+            );
+           
+                
+                
+                if ($stmt->execute()) {
+                    echo "
+                    <div class='Sucess_message'>
+                    <h2>Sucess</h2>
+                    <div class='Sucess_body'>
+                    <img src='./logo/tick.png'  alt='tickmark'>
+                    <p>Product Added Successfully!</p>
+                    </div>
+                    </div>";
                 } else {
-                    echo "Error: " . $conn->error;
+                    echo "
+                    <div class='Error_message'>
+                    <h2>Success</h2>
+                    <div class='Error_body'>
+                    <img src='./logo/cross.png'  alt='Crossmark'>
+                    <p>Fail to Add Product!</p>
+                    </div>
+                    </div>
+                    
+                    ";
                 }
+                $stmt->close();
             } else {
                 echo "Error uploading image.";
             }
@@ -60,7 +134,97 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Error: Category not found.";
     }
+    $categoryStmt->close();
 }
 
 $conn->close();
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Bebas+Neue&family=Fredoka:wght@300..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+}    
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+}
+.Sucess_message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 40px;
+    flex-direction: column;
+    border: 2px solid green;
+    border-radius: 10px;
+}
+.Sucess_body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 3px;
+    flex-direction: column;
+   
+}
+.Sucess_body img{
+    max-width:100px;
+}
+.Sucess_body p{
+    font-weight: 500;
+}
+.Error_message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 40px;
+    flex-direction: column;
+    border: 2px solid red;
+    border-radius: 10px;
+}
+.Error_body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 3px;
+    flex-direction: column;
+   
+}
+.Error_body img{
+    max-width:100px;
+}
+.Error_body p{
+    font-weight: 500;
+}
+
+</style>
+
+
+
+
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>

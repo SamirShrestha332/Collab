@@ -52,6 +52,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anta&family=Bebas+Neue&family=Fredoka:wght@300..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+}
 .container{
     display: flex;
     align-items: center;

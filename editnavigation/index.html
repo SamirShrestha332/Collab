@@ -24,7 +24,7 @@
 </style> -->
 <body>
   <header>
-    <img src="logo/infinity_logo.png"  alt="Infinite logo">
+    <img src="/Infinity/Images/infinity_logo.png"  alt="Infinite logo">
     <h2>Admin </h2>
     <ion-icon name="sunny-outline" class="light"></ion-icon>
   </div>
@@ -33,7 +33,14 @@
   </div>
   </header>
   <div class="container">
- 
+   <div class="adminacess">
+    <a href="orderlist.php">see order list</a><br>
+    <a href="deleteproduct.php">delete product</a><br>
+    <a href="/editnavigation/subcategories/subcatmen.php">Edit Men subcategories</a><br>
+    <a href="/editnavigation/subcategories/subcatwomen.php">Edit Women subcategories</a><br>
+    <a href="/editnavigation/subcategories/subcatunisex.php">Edit men subcategories</a><br>
+    
+   </div>
    <h3> Edit Navigation</h3>
    <form action="datapush.php" method="Post">
     
@@ -48,22 +55,22 @@
 
     <div class="row">
       <div class="col">
-        <input type="text"  name="box3" class="form-control" placeholder="NavBar3 name" id="3" required >
+        <input type="text"  name="box3" class="form-control" placeholder="NavBar3 Name" id="3" required >
       </div>
       <div class="col">
-        <input type="text" name="box4" class="form-control" placeholder="NavBar4 name" id="4" required>
+        <input type="text" name="box4" class="form-control" placeholder="NavBar4 Name" id="4" required>
       </div> 
      </div>
      <div class="row">
       <div class="col">
-        <input type="text" name="box5" class="form-control" placeholder="NavBar5 name" id="5" required>
+        <input type="text" name="box5" class="form-control" placeholder="NavBar5 Name" id="5" required>
       </div>
       <div class="col">
-        <input type="text"  name="box6" class="form-control" placeholder="NavBar6  name" id="6" >
+        <input type="text"  name="box6" class="form-control" placeholder="NavBar6  Name" id="6" >
       </div>
 
     </div>
-
+ <br>
      <input class="btn btn-primary" type="submit" id="SubmitBtn" value="Submit">
 
    </form>
@@ -100,23 +107,19 @@
             <option value="Women">Women</option>
             <option value="Unisex">Unisex</option>
         </select>
-
+        
         <!-- Sub-Category Selection -->
         <label for="sub-category">Select Sub-Category:</label>
         <select name="Sub-Category" id="Sub-Category">
-            <option value="" disabled selected>Select</option>
-            <option value="Pant">Pant</option>
-            <option value="T-shirt">Tshirt</option>
-            <option value="Sweater">Sweater</option>
-            <option value="Jacket">Jacket</option>
-            <option value="Hoodies">Hoodies</option>
-            <option value="Sweatshirt">Sweatshirt</option>
-            <!-- Add more sub-categories as needed -->
+            <option value="" disabled selected aria-required="true">Select</option>
         </select>
-
+       
+        
+        <div id="sub-category-validation-message" class="validation-message"></div>
         <!-- Product Details -->
         <label for="product-name">Product Name:</label>
         <input type="text" id="product-name" name="product-name" placeholder="Enter product name">
+        <div id="name-validation-message" class="validation-message"></div>
 
         <label for="product-image">Product Image:</label>
     <input type="file" id="product-image" name="product-image" accept="image/png,image/jpeg">
@@ -125,44 +128,47 @@
 
         <label for="product-description">Product Description:</label>
         <textarea id="product-description" name="product-description" placeholder="Enter product description"></textarea>
+        <div id="description-validation-message" class="validation-message"></div>
 
         <label for="product-price">Product Price:</label>
         <input type="number" id="product-price" name="product-price" placeholder="Enter product price" min="0" max="99999.999" step="0.001">
 
 
-        <label for="product-stock">Product Stock:</label>
-        <input type="number" id="product-stock" name="product-stock" placeholder="Enter product stock">
+      
 
         <label for="product-size">Product Size:</label>
         <div class="sizes">
           <div class="s1">
-            <input type="radio" name="product-size" id='size_xxl' value="XXL">
+           
             <label for="size_xxl">XXL</label>
+            <input type="number" class="product_size"    name="size_xxl" id='size_xxl' value=0 min='0' max="99">
             
       </div>
 
       <div class="s2">
-        <input type="radio" name="product-size" id='size_xl' value="XL">
-        <label for="size_xxl">XL</label>
+        <label for="size_xl">XL</label>
+        <input type="number" class="product_size"   name="size_xl"  id='size_xl' min='0' value=0 max="99">
         
       </div>
 
       <div class="s3">
-        <input type="radio" name="product-size" id='size_m' value="M">
-        <label for="size_xxl">M</label>
+        <label for="size_m">M</label>
+        <input type="number"class="product_size"    name="size_m" id='size_m'   value=0 min='0' max="99">
         
       </div>
 
       <div class="s4">
-        <input type="radio" name="product-size" id='size_s' value="S">
-        <label for="size_xxl">S</label>
+        <label for="size_s">S</label>
+        <input type="number" class="product_size"  name="size_s"  id='size_s' value=0 min='0' max="99" >
         
       </div>
         
       </div>
-
-
+       
+      <label for="totalstock">Total Stock:</label>
+      <p   id="totalstock" name="product-stock" ></p>
         <!-- Submit Button -->
+        
         <button type="submit" class="btn btn-primary" id="addBtn">Add Product</button>
     </form>
 </div>
